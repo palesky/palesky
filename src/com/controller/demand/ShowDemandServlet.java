@@ -77,7 +77,7 @@ public class ShowDemandServlet extends HttpServlet {
 				} else {//特定的任务
 					request.setAttribute("list_group_title3", "任务列表");
 					request.setAttribute("item", demandDao.getDemand(q));
-					request.setAttribute("itemList", taskDao.findAllTask());
+					request.setAttribute("itemList", demandDao.findTaskByDemand(q));
 					request.setAttribute("itemType", "需求");
 					request.setAttribute("url", "demand");
 					request.setAttribute("sonUrl", "task");

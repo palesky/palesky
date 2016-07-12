@@ -432,11 +432,11 @@ public class TaskDao extends BaseDao{
 			pstmt.setString(4, task.getEndDate());
 			pstmt.setString(5, task.getExplain());
 			pstmt.setString(6, task.getLastEditedBy());
-			pstmt.setString(7, dateNowStr);//最后编辑时间
+			pstmt.setDate(7, new java.sql.Date(new java.util.Date().getTime()));//最后编辑时间
 			pstmt.setString(8, task.getConfirmedBy());
-			pstmt.setString(9, task.getId());
-			pstmt.setString(10,task.getChargeBy());
-			pstmt.setInt(11, task.getBugNum());
+			pstmt.setString(9,task.getChargeBy());
+			pstmt.setInt(10, task.getBugNum());
+			pstmt.setString(11, task.getId());
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {

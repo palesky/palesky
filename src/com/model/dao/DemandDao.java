@@ -29,8 +29,20 @@ public class DemandDao extends BaseDao{
     			PreparedStatement pstmt=conn.prepareStatement(sql)){
     		pstmt.setString(1, id);
     		pstmt.setString(2, id);
+    		pstmt.executeUpdate();
+    	}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			bugNum=0;	
+    	}
+    	sql ="select bugNum from demand where id=?";
+    	try(Connection conn= dataSource.getConnection();
+    			PreparedStatement pstmt=conn.prepareStatement(sql)){
+    		pstmt.setString(1, id);
+    		
     		ResultSet rst =pstmt.executeQuery();
-    		bugNum= rst.getInt("bugNum");
+    		if(rst.next())
+    			bugNum= rst.getInt("bugNum");
     		return bugNum;
     	}catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -306,10 +318,11 @@ public class DemandDao extends BaseDao{
 			pstmt.setString(3, demand.getStatus());
 			pstmt.setString(4, demand.getEndDate());
 			pstmt.setString(5, demand.getExplain());
-			pstmt.setString(6, dateNowStr);
+			pstmt.setDate(6, new java.sql.Date(new java.util.Date().getTime()));
 			pstmt.setString(7, demand.getConfirmedBy());
-			pstmt.setString(8, demand.getId());
-			pstmt.setString(9, demand.getChargeBy());
+			pstmt.setString(8, demand.getChargeBy());
+			pstmt.setInt(9, FindDemandBugNum(demand.getId()));
+			pstmt.setString(10, demand.getId());
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {

@@ -180,7 +180,7 @@ public class ProjectDao extends BaseDao{
 	//查找一个项目下的所有需求
 	public ArrayList<DemandBean> findDemandByProject(String id){
 		ArrayList<DemandBean> list = new ArrayList<DemandBean>();
-		String sql="select * from demand where demand_id =?";
+		String sql="select * from demand where project_id =?";
 		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, id);
 			ResultSet rst = pstmt.executeQuery();
@@ -330,7 +330,7 @@ public class ProjectDao extends BaseDao{
 	
 	public boolean addProject(ProjectBean project) {
 		
-		String sql = "INSERT INTO project(id,name,status,createdBy,createdDate,endDate,`explain`,team,confirmedBy,prod_id,chargeBy,bugNum)VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO project(id,name,status,createdBy,createdDate,endDate,`explain`,team,confirmedBy,chargeBy,prod_id,bugNum)VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, project.getId());

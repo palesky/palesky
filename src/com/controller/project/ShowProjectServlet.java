@@ -85,7 +85,7 @@ public class ShowProjectServlet extends HttpServlet {
 				} else {//特定的需求
 					request.setAttribute("list_group_title3", "需求列表");
 					request.setAttribute("item", pj.getProject(q));
-					request.setAttribute("itemList", dd.findAllDemand());
+					request.setAttribute("itemList", pj.findDemandByProject(q));
 					request.setAttribute("itemType", "项目");
 					request.setAttribute("url", "project");
 					request.setAttribute("sonUrl", "demand");

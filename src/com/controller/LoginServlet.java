@@ -82,6 +82,7 @@ public class LoginServlet extends HttpServlet {
 			use.updateUserLogin(account, ip);
 			HttpSession session = request.getSession(true);
 			//sesson存入用户信息
+			user=use.getUser(account);
 			session.setAttribute("user", user);
 			response.sendRedirect("product");
 			return;

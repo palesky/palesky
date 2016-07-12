@@ -84,7 +84,7 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">结束日期</label> <input type="text"
 							class="form-control" name="endDate"
-							placeholder="输入日期 格式为:yyyy-mm-dd">
+							placeholder="输入日期 格式为:yyyymmdd">
 					</div>
 
 					<c:if test="${itemType=='项目'}">
@@ -92,7 +92,7 @@
 						    <span class="input-group-addon">所属团队</span> <select name="team"
 								class="form-control">
 								<c:forEach var="item" items="${requestScope.teamList}">
-									<option value="item">${item}</option>
+									<option value="${item}">${item}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -103,7 +103,7 @@
 							<span class="input-group-addon">所属产品</span> <select name="pro_id"
 								class="form-control">
 								<c:forEach var="item" items="${requestScope.productList}">
-									<option value="item.id">${item.name}</option>
+									<option value="${item.id}">${item.name}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -114,7 +114,7 @@
 							<span class="input-group-addon">所属项目</span> <select
 								name="project_id" class="form-control">
 								<c:forEach var="item" items="${requestScope.projectList}">
-									<option value="item.id">${item.name}</option>
+									<option value="${item.id}">${item.name}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -125,7 +125,7 @@
 							<span class="input-group-addon">所属需求</span> <select
 								name="demand_id" class="form-control">
 								<c:forEach var="item" items="${requestScope.demandList}">
-									<option value="item.id">${item.name}</option>
+									<option value="${item.id}">${item.name}</option>
 								</c:forEach>
 							</select>
 						</div>

@@ -60,7 +60,7 @@ public class AddProjectServlet extends HttpServlet {
 		
 		ProjectDao projectDao=new ProjectDao();
 		projectDao.addProject(project);
-		response.sendRedirect("project?q="+id);
+		request.getRequestDispatcher("project?q="+id).forward(request, response);
 	}
 
 	/**

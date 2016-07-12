@@ -31,6 +31,7 @@ public class AddProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
 		String id=request.getParameter("id");
 		String name=request.getParameter("name");
 		String status=request.getParameter("status");
@@ -57,7 +58,8 @@ public class AddProductServlet extends HttpServlet {
 		
 		ProductDao productDao=new ProductDao();
 		productDao.addProduct(product);
-		response.sendRedirect("product?q="+id);
+		request.getRequestDispatcher("product?q="+id).forward(request, response);
+		
 		
 	}
 
