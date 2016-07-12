@@ -373,7 +373,7 @@ public class ProjectDao extends BaseDao{
 	 * */
 	public boolean updateProject(ProjectBean project) {
 		
-		String sql = "update project set id=?,name=?,status=?,endDate=?,`explain`=?,team=?,confirmedBy=?,chargeBy=? where id=?";
+		String sql = "update project set id=?,name=?,status=?,endDate=?,`explain`=?,team=?,confirmedBy=?,chargeBy=? ,bugNum =? where id=?";
 		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, project.getId());
 			pstmt.setString(2, project.getName());
@@ -384,6 +384,7 @@ public class ProjectDao extends BaseDao{
 			pstmt.setString(7, project.getConfirmedBy());
 			pstmt.setString(8, project.getChargeBy());
 			pstmt.setString(9, project.getId());
+			pstmt.setInt(10, FindProjectBugNum(project.getId()));
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {

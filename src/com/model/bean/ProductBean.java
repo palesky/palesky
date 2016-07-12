@@ -11,6 +11,7 @@ public class ProductBean {
 	String explain;
 	String confirmedBy;
 	String chargeBy;
+	int BugNum;
 	public String getCreatedDate() {
 		return createdDate;
 	}

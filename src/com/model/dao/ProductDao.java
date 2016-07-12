@@ -300,7 +300,7 @@ public class ProductDao extends BaseDao{
 			pstmt.setString(8, product.getExplain());
 			pstmt.setString(9, product.getConfirmedBy());
 			pstmt.setString(10, product.getChargeBy());
-			pstmt.setInt(11, product.getBugNum());
+			pstmt.setInt(11, 0);
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {
@@ -325,7 +325,7 @@ public class ProductDao extends BaseDao{
 	
 	
 	public boolean updateProduct(ProductBean product) {
-		String sql = "update product set id=?,name=?,status=?,pro_type=?,endDate=?,`explain`=?,confirmedBy=?,chargeBy=? where id=?";
+		String sql = "update product set id=?,name=?,status=?,pro_type=?,endDate=?,`explain`=?,confirmedBy=?,chargeBy=?,bugNum =? where id=?";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, product.getId());
@@ -337,7 +337,7 @@ public class ProductDao extends BaseDao{
 			pstmt.setString(7, product.getConfirmedBy());
 			pstmt.setString(8, product.getChargeBy());
 			pstmt.setString(9, product.getId());
-						
+			pstmt.setInt(10, FindProductBugNum(product.getId()));		
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {
