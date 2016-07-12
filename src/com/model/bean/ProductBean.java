@@ -11,6 +11,9 @@ public class ProductBean {
 	String explain;
 	String confirmedBy;
 	String chargeBy;
+	public String getCreatedDate() {
+		return createdDate;
+	}
 	int bugNum;
 	public String getId() {
 		return id;

@@ -79,7 +79,7 @@ public class ShowProjectServlet extends HttpServlet {
 					request.setAttribute("itemType", "项目");
 					request.setAttribute("itemType2", "需求");
 					request.setAttribute("url", "project");
-					request.setAttribute("url2", "product");
+					request.setAttribute("url2", "demand");
 					
 					request.getRequestDispatcher("project.jsp").forward(request, response);
 				} else {//特定的需求
@@ -88,7 +88,7 @@ public class ShowProjectServlet extends HttpServlet {
 					request.setAttribute("itemList", dd.findAllDemand());
 					request.setAttribute("itemType", "项目");
 					request.setAttribute("url", "project");
-					request.setAttribute("sonUrl", "product");
+					request.setAttribute("sonUrl", "demand");
 					
 					request.getRequestDispatcher("projectInfo.jsp").forward(request, response);
 				}

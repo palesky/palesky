@@ -30,6 +30,7 @@ public class UpdateUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
 		UserDao d=new UserDao();
 		UserBean user=(UserBean)request.getSession().getAttribute("user");
 		String realname=request.getParameter("realname");
@@ -37,6 +38,8 @@ public class UpdateUserServlet extends HttpServlet {
 		String gender=request.getParameter("gender");
 		String phone=request.getParameter("phone");
 		String account=request.getParameter("account");
+		
+		System.out.println(realname);
 		
 		if(realname==null){realname=user.getRealname();}
 		if(email==null){email=user.getEmail();}

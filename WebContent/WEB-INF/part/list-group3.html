@@ -22,6 +22,31 @@ pageEncoding="UTF-8"%>
 		<div class="panel-body">
 			<p>${item.explain}</p>
 		</div>
+		<table class="table table-hover table-bordered">
+			<tr>
+				<td>id</td>
+				<td>名称</td>
+				<td>状态</td>
+				<td>创建日期</td>
+				<td>创建者</td>
+				<td>负责人</td>
+				<td>开启</td>
+				<td>关闭</td>
+			</tr>
+			<tr>
+				<td>${item.id}</td>
+				<td>${item.name}</td>
+				<td>${item.status}</td>
+				<td>${item.createdDate}</td>
+				<td>${item.createdBy}</td>
+				<td>${item.chargeBy}</td>
+				<td><a href="op?type=${url}&id=${item.id}&method=open">开启</a></td>
+				<td><a href="op?type=${url}&id=${item.id}&method=close">关闭</a></td>
+			</tr>
+		</table>
+		<div class="panel-body">
+			<p>下属列表</p>
+		</div>
 		<!-- Table -->
 		<table class="table table-hover table-bordered">
 			<tr>
@@ -103,7 +128,8 @@ pageEncoding="UTF-8"%>
 
 					<c:if test="${itemType=='项目'}">
 						<div class="form-group input-group">
-							<span class="input-group-addon">所属团队</span> <select name="team" class="form-control">
+							<span class="input-group-addon">所属团队</span> <select name="team"
+								class="form-control">
 								<c:forEach var="item" items="${requestScope.teamList}">
 									<option value="item">${item}</option>
 								</c:forEach>
@@ -113,7 +139,8 @@ pageEncoding="UTF-8"%>
 
 					<c:if test="${itemType=='项目'}">
 						<div class="form-group input-group">
-							<span class="input-group-addon">所属产品</span> <select name="pro_id" class="form-control">
+							<span class="input-group-addon">所属产品</span> <select name="pro_id"
+								class="form-control">
 								<c:forEach var="item" items="${requestScope.productList}">
 									<option value="item.id">${item.name}</option>
 								</c:forEach>
@@ -125,7 +152,7 @@ pageEncoding="UTF-8"%>
 						<div class="form-group input-group">
 							<span class="input-group-addon">所属项目</span> <select
 								name="project_id" class="form-control">
-								<c:forEach var="item" items="${requestScope.projectList}" >
+								<c:forEach var="item" items="${requestScope.projectList}">
 									<option value="item.id">${item.name}</option>
 								</c:forEach>
 							</select>

@@ -68,7 +68,8 @@
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">性别</label>
-						<div class="col-sm-10">
+						<label class="col-sm-2 control-label text-left"><p class="text-left">${user.gender}</p></label>
+						<div class="col-sm-4">
 							<label class="radio-inline"> <input type="radio"
 								name="gender" id="inlineRadio1" value="男"> 男
 							</label> <label class="radio-inline"> <input type="radio"
@@ -106,9 +107,15 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">最后登录ip以及时间</label>
+						<label class="col-sm-2 control-label">最后登录ip</label>
 						<div class="col-sm-10">
-							<p class="form-control-static">${user.ip}${user.lastLogin}</p>
+							<p class="form-control-static">${user.ip}</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">最后登录时间</label>
+						<div class="col-sm-10">
+							<p class="form-control-static">${user.lastLogin}</p>
 						</div>
 					</div>
 					<div class="form-group">
