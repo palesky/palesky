@@ -1,6 +1,8 @@
 package com.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +28,21 @@ public class LoginServlet extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public String getIpAddr(HttpServletRequest request) {      
+        String ip = request.getHeader("x-forwarded-for");      
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {     
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {     
+            ip = request.getHeader("WL-Proxy-Client-IP");     
+        }
+        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {     
+            ip = request.getRemoteAddr();
+        }
+         return ip;
+    }  
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -47,7 +64,8 @@ public class LoginServlet extends HttpServlet {
 
 		UserDao d = new UserDao();
 		UserBean user = d.getUser(account);
-		
+		String ip=getIpAddr(request);
+		System.out.print(ip);
 
 		request.getSession().setAttribute("chargedByList",d.findAllChargedMan());
 		request.getSession().setAttribute("confirmedByList",d.findAllConfirmeddMan());
@@ -60,6 +78,8 @@ public class LoginServlet extends HttpServlet {
 		}
 		if (user.getPassword().equals(password)) {
 			System.out.println("验证通过");
+			UserDao use = new UserDao();
+			use.updateUserLogin(account, ip);
 			HttpSession session = request.getSession(true);
 			//sesson存入用户信息
 			session.setAttribute("user", user);

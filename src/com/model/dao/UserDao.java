@@ -1,12 +1,18 @@
 package com.model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+//import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.model.bean.UserBean;
+
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 /**
  * findByKeyword 未测试
@@ -136,10 +142,27 @@ public class UserDao extends BaseDao {
 		return false;
 	}
 	
+	//--------------------------------------------------------------------
+	public boolean updateUserLogin(String id,String ip){
+		String sql="update user set visit=visit+1 , lastIp =? , lastLogin= ? where account=?";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, ip);
+			pstmt.setDate(2, new java.sql.Date(new java.util.Date().getTime()));
+			pstmt.setString(3, id);
+			pstmt.executeUpdate();
+			return true;
+		}catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
 	
+	//-------------------------------------------------------------------------
 	public boolean updateUser(UserBean user) {
 		String sql = "update user set account=?,realname=?,gender=?,email=?,phone=? where id=?";
-		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, user.getAccount());
 			pstmt.setString(2, user.getRealname());
 			pstmt.setString(3, user.getGender());

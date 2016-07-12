@@ -8,9 +8,8 @@
 <!-- chargedByList ->chargedMan 指派者列表
 	 confirmedByList ->confirmedMan 审核者列表 -->
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> <%@ page
-language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="col-lg-8">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -90,7 +89,7 @@ pageEncoding="UTF-8"%>
 
 					<c:if test="${itemType=='项目'}">
 						<div class="form-group input-group">
-							<span class="input-group-addon">所属团队</span> <select name="team"
+						    <span class="input-group-addon">所属团队</span> <select name="team"
 								class="form-control">
 								<c:forEach var="item" items="${requestScope.teamList}">
 									<option value="item">${item}</option>

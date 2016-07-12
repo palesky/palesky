@@ -37,6 +37,28 @@ public class UsecaseDao extends BaseDao{
 		}
 	}
 	
+	public ArrayList<UsecaseBean> findUsecaseByType(String id){
+		ArrayList<UsecaseBean> list= new ArrayList<UsecaseBean>();
+		String sql="select * from usecase where usecaseLibId =?";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			ResultSet rst = pstmt.executeQuery();
+			while (rst.next()) {
+				UsecaseBean usecase = new UsecaseBean();
+				usecase.setId(rst.getString("id"));
+				usecase.setUsecaseLibId(rst.getString("usecaseLibId"));
+				usecase.setCreatedBy(rst.getString("createdBy"));
+				usecase.setCreatedDate(rst.getString("createdDate"));
+				usecase.setSteps(rst.getString("steps"));
+				list.add(usecase);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public boolean addUsecase(UsecaseBean usecase) {
 		Date d=new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-dd");
