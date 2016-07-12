@@ -28,9 +28,17 @@ public class ProductDao extends BaseDao{
     			PreparedStatement pstmt=conn.prepareStatement(sql)){
     		pstmt.setString(1, id);
     		pstmt.setString(2, id);
-    		ResultSet rst =pstmt.executeQuery();
+    		pstmt.executeUpdate();
+    	}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+    	} 	
+    	String sql2="select bugNum from product where id =?";
+    	try(Connection conn= dataSource.getConnection();
+    			PreparedStatement pstmt=conn.prepareStatement(sql2)){
+    		pstmt.setString(1, id);
+    		ResultSet rst = pstmt.executeQuery();
     		bugNum= rst.getInt("bugNum");
-    		return bugNum;
     	}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

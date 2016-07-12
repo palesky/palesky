@@ -52,11 +52,9 @@ public class BugDao extends BaseDao{
 	
 	//增加 bug时  创建日期为当前日期
 	public boolean addBug(BugBean bug) {
-		Date d=new Date();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-dd");
-		String dateNowStr =sdf.format(d);
 		
 		String sql = "INSERT INTO bug(name,status,bug_type,os,browser,foundBy,foundDate,priority,steps,usecaseId,task_testerId,chargeBy)VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql2="update task bugNum =bugNum+1";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, bug.getName());
@@ -65,13 +63,14 @@ public class BugDao extends BaseDao{
 			pstmt.setString(4, bug.getOs());
 			pstmt.setString(5, bug.getBrowser());
 			pstmt.setString(6, bug.getFoundBy());
-			pstmt.setString(7, dateNowStr);
+			pstmt.setDate(7, new java.sql.Date(new java.util.Date().getTime()));
 			pstmt.setString(8, bug.getPriority());
 			pstmt.setString(9, bug.getSteps());
 			pstmt.setString(10, bug.getUsecaseId());
 			pstmt.setString(11, bug.getTask_testerId());
 			pstmt.setString(12, bug.getChargeBy());
 			pstmt.executeUpdate();
+			
 			return true;
 		} catch (SQLException se) {
 			se.printStackTrace();
