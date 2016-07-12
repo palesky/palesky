@@ -253,8 +253,37 @@ public class ProductDao extends BaseDao{
 			return null;
 		}
 	}
+	//---------------------------------------------------------------------------
+	//找出  待审核的产品
+	public ArrayList<ProductBean> findToCheckProduct(){
+		ArrayList<ProductBean> list = new ArrayList<ProductBean>();
+		String sql="select * from product where status= '待审核' ";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				ResultSet rst = pstmt.executeQuery();
+				while (rst.next()) {
+					ProductBean product = new ProductBean();				
+					product.setId(rst.getString("id"));
+					product.setName(rst.getString("name"));
+					product.setStatus(rst.getString("status"));
+					product.setPro_type(rst.getString("pro_type"));
+					product.setCreatedBy(rst.getString("createdBy"));
+					product.setCreatedDate(rst.getString("createdDate"));
+					product.setEndDate(rst.getString("endDate"));
+					product.setExplain(rst.getString("explain"));
+					product.setConfirmedBy(rst.getString("confirmedBy"));
+					product.setChargeBy(rst.getString("chargeBy"));
+					product.setBugNum(rst.getInt("bugNum"));
+					list.add(product);
+				}
+				return list;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}		
+	}
 	
-	
+	//--------------------------------------------------------------------------------------
 	public boolean addProduct(ProductBean product) {
 		String sql = "INSERT INTO product(id,name,status,pro_type,createdBy,createdDate,endDate,`explain`,confirmedBy,chargeBy,bugNum)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
