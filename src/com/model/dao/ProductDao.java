@@ -265,7 +265,8 @@ public class ProductDao extends BaseDao{
 			pstmt.setString(4, product.getPro_type());
 			pstmt.setString(5, product.getCreatedBy());
 			pstmt.setDate(6, new java.sql.Date(new java.util.Date().getTime()));
-			pstmt.setDate(7, new java.sql.Date(new java.util.Date().getTime()));
+			//pstmt.setDate(7, new java.sql.Date(new java.util.Date().getTime()));
+			pstmt.setString(7, product.getEndDate());
 //			pstmt.setString(7, product.getEndDate());
 			pstmt.setString(8, product.getExplain());
 			pstmt.setString(9, product.getConfirmedBy());
