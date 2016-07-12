@@ -83,17 +83,7 @@ public class ProductDao extends BaseDao{
 				pstmt.setString(3,"%"+key+"%");
 				pstmt.setString(4,"%"+key+"%");
 				ResultSet rst = pstmt.executeQuery();
-				while (rst.next()) {
-					java.text.SimpleDateFormat   formatter   = new   SimpleDateFormat( "yyyy-MM-dd ");
-					String statu=rst.getString("status");
-					String time =rst.getString("endDate");
-					Date endTime = formatter.parse(time);
-					String a="进行中";
-					Date now=new java.sql.Date(new java.util.Date().getTime());
-					if(statu.equals(a) && endTime.before(now) )
-					{
-						statu="已延期";
-					}
+				while (rst.next()) {					
 					ProductBean product = new ProductBean();
 					product.setId(rst.getString("id"));
 					product.setName(rst.getString("name"));
@@ -125,20 +115,12 @@ public class ProductDao extends BaseDao{
 			ResultSet rst = pstmt.executeQuery();
 
 			while (rst.next()) {
-				java.text.SimpleDateFormat   formatter   = new   SimpleDateFormat( "yyyy-MM-dd ");
+				//java.text.SimpleDateFormat   formatter   = new   SimpleDateFormat( "yyyy-MM-dd ");
 				ProductBean product = new ProductBean();
-				String statu=rst.getString("status");
-				String time =rst.getString("endDate");
-				Date endTime = formatter.parse(time);
-				String a="进行中";
-				Date now=new java.sql.Date(new java.util.Date().getTime());
-				if(statu.equals(a) && endTime.before(now) )
-				{
-					statu="已延期";
-				}
+				
 				product.setId(rst.getString("id"));
 				product.setName(rst.getString("name"));
-				product.setStatus(statu);
+				product.setStatus(rst.getString("status"));
 				product.setPro_type(rst.getString("pro_type"));
 				product.setCreatedBy(rst.getString("createdBy"));
 				product.setCreatedDate(rst.getString("createdDate"));
