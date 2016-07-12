@@ -1,0 +1,15 @@
+	<!-- 面包屑导航栏 -xjy -->
+	<!-- itemType:如产品，项目... -->
+	<!-- url:用于导航，限定为 product project ...等等 ，因为实际上跳转到 showXxxServlet -->
+		
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink"
+								xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active"><a href="${url}?q=all">全部${itemType}</a></li>
+				<li class="active"><a href="${url}?q=me">与我相关${itemType}</a></li>
+			</ol>
+		</div>

@@ -1,0 +1,26 @@
+<!-- 待测试 7/10 -xjy -->
+<!-- 存在问题 c:if 无法判断itemList是否为空 -xjy -->
+<!-- list_group_title 传列表名 -->
+<!-- sessionScope.itemList 传ArrayList<object> -->
+<!-- url add+url 拼接为addProduct 等..-->
+<!-- url?item.id 查看详情 -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<div class="col-lg-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			${list_group_title3}
+		</div>
+		<ul class="list-group">
+
+			<c:forEach var="item" items="${requestScope.itemList3}">
+				<li class="list-group-item">${item.name} : ${item.explain} <a
+					href="./${url3}?q=${item.id}">详情</a>
+				</li>
+			</c:forEach>
+
+
+		</ul>
+	</div>
+</div>

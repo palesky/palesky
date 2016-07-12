@@ -1,0 +1,166 @@
+<!-- 待测试 7/10 -xjy -->
+<!-- 存在问题 c:if 无法判断itemList是否为空 -xjy -->
+<!-- list_group_title 传列表名 -->
+<!-- sessionScope.itemList 传ArrayList<object> -->
+<!-- url add+url 拼接为addProduct 等..-->
+<!-- url?item.id 查看详情 -->
+<!-- itemType 为中文  -->
+<!-- chargedByList ->chargedMan 指派者列表
+	 confirmedByList ->confirmedMan 审核者列表 -->
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> <%@ page
+language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<div class="col-lg-8">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			${list_group_title}
+			<button class="pull-right btn btn-primary btn-lg" data-toggle="modal"
+				data-target="#showAddModal">新建${itemType}</button>
+		</div>
+		<ul class="list-group">
+
+			<c:forEach var="item" items="${requestScope.itemList}">
+				<li class="list-group-item">${item.name} : ${item.explain} <a
+					href="./${url}?q=${item.id}">详情</a>
+				</li>
+			</c:forEach>
+
+
+		</ul>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="showAddModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">添加${itemType}</h4>
+			</div>
+			<form action="add${url}">
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">${itemType}编号</label> <input
+							type="text" class="form-control" name="id" placeholder="输入编号">
+					</div>
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">${itemType}名称</label> <input
+							type="text" class="form-control" name="name" placeholder="输入名称">
+					</div>
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">${itemType}简介</label>
+						<textarea class="form-control" rows="5" name="explain"></textarea>
+					</div>
+
+					<input type="hidden" name="status" value="待审核">
+
+					<div class="form-group">
+						<div class="row">
+							<c:if test="${itemType=='产品'}">
+								<div class="col-sm-6">
+									<label for="exampleInputEmail1">${itemType}类型</label> <select
+										name="pro_type">
+										<option value="单平台">单平台</option>
+										<option value="多平台">多平台</option>
+									</select>
+								</div>
+							</c:if>
+
+							<div class="col-sm-6">
+								<label for="exampleInputEmail1">创建者:${user.id}</label> <input
+									type="hidden" name="createdBy" value="${user.id}">
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">结束日期</label> <input type="text"
+							class="form-control" name="endDate"
+							placeholder="输入日期 格式为:yyyy-mm-dd">
+					</div>
+
+					<c:if test="${itemType=='项目'}">
+						<div class="form-group input-group">
+							<span class="input-group-addon">所属团队</span> <select name="team"
+								class="form-control">
+								<c:forEach var="item" items="${requestScope.teamList}">
+									<option value="item">${item}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</c:if>
+
+					<c:if test="${itemType=='项目'}">
+						<div class="form-group input-group">
+							<span class="input-group-addon">所属产品</span> <select name="pro_id"
+								class="form-control">
+								<c:forEach var="item" items="${requestScope.productList}">
+									<option value="item.id">${item.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</c:if>
+
+					<c:if test="${itemType=='需求'}">
+						<div class="form-group input-group">
+							<span class="input-group-addon">所属项目</span> <select
+								name="project_id" class="form-control">
+								<c:forEach var="item" items="${requestScope.projectList}">
+									<option value="item.id">${item.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</c:if>
+
+					<c:if test="${itemType=='任务'}">
+						<div class="form-group input-group">
+							<span class="input-group-addon">所属需求</span> <select
+								name="demand_id" class="form-control">
+								<c:forEach var="item" items="${requestScope.demandList}">
+									<option value="item.id">${item.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</c:if>
+
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="exampleInputEmail1">指派给</label> <select
+									name="chargeBy">
+									<c:forEach var="chargedMan"
+										items="${sessionScope.chargedByList}">
+										<option value="${chargedMan.id}">${chargedMan.role}${chargedMan.realname}</option>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="col-sm-6">
+								<label for="exampleInputEmail1">审核者</label> <select
+									name="confirmedBy">
+									<c:forEach var="confirmedMan"
+										items="${sessionScope.confirmedByList}">
+										<option value="${confirmedMan.id}">${confirmedMan.role}${confirmedMan.realname}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Save changes</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
