@@ -55,8 +55,6 @@ public class LoginServlet extends HttpServlet {
 		request.getSession().removeAttribute("username");//由于粘性表单，所以在sessoin里存了username，所以要删除
 		
 		
-		
-		
 		String account = request.getParameter("username");
 		String password = request.getParameter("password");
 		System.out.print("username");
@@ -86,14 +84,21 @@ public class LoginServlet extends HttpServlet {
 			//sesson存入用户信息
 			user=use.getUser(account);
 			session.setAttribute("user", user);
-			response.sendRedirect("product");
-			return;
+			if(user.getVisits()==1){
+				request.getRequestDispatcher("firstLogin").forward(request, response);
+				return;
+			}else{
+				response.sendRedirect("product");
+				return;
+			}
+		
 		} else {
 			request.getSession().setAttribute("username", account);
 			System.out.println("密码错误");
 			response.sendRedirect("login.jsp");
 			return;
 		}
+		
 	}
 
 	/**
