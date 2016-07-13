@@ -200,8 +200,8 @@
 
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">返回</button>
+								<a type="button" class="btn btn-default"
+									data-dismiss="modal" href="bug?q=all">返回</a>
 								<a class="btn btn-primary">已解决bug</a>
 							</div>
 						</form>

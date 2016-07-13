@@ -60,7 +60,15 @@
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 
-		<%@include file="./WEB-INF/part/breadcrumb.html"%>
+				<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink"
+								xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active"><a href="bug?q=all">全部bug</a></li>
+				<li class="active"><a href="bug?q=me">与我相关bug</a></li>
+			</ol>
+		</div>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
@@ -68,13 +76,13 @@
 						<h1 class="panel-title">提交bug</h1>
 					</div>
 					<div class="panel-body">
-						<form action="addbug">
+						<form action="addbug" method="post">
 							<div class="modal-body">
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<label for="exampleInputEmail1">bug编号</label> <input
 										type="text" class="form-control" name="id" placeholder="输入编号"
 										>
-								</div>
+								</div> -->
 
 								<div class="form-group">
 									<label for="exampleInputEmail1">bug标题</label> <input
@@ -207,9 +215,9 @@
 										<div class="col-sm-4">
 											<div class="form-group input-group">
 												<span class="input-group-addon">所属任务</span> <select
-													name="task" class="form-control">
+													name="task_testerId" class="form-control">
 													<c:forEach var="item" items="${requestScope.taskList}">
-														<option value="item.id">${item.name}</option>
+														<option value="${item.id}">${item.taskId}</option>
 													</c:forEach>
 												</select>
 											</div>

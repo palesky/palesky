@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -96,6 +97,29 @@ public class Task_testerDao extends BaseDao {
 		} catch (SQLException se) {
 			se.printStackTrace();
 			return false;
+		}
+	}
+	
+	public ArrayList<Task_testerBean> findAll(){
+		ArrayList<Task_testerBean> list=new ArrayList<Task_testerBean>();
+		String sql = "SELECT * FROM task_tester";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			ResultSet rst = pstmt.executeQuery();
+			while (rst.next()) {
+				Task_testerBean product = new Task_testerBean();
+				product.setId(rst.getInt("id"));
+				product.setTaskId(rst.getString("taskId"));
+				product.setUserId(rst.getString("userId"));
+				product.setCreatedDate(rst.getString("createdDate"));
+				product.setBugNum(rst.getInt("bugNum"));
+				list.add(product);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("return null");
+			return null;
 		}
 	}
 	
