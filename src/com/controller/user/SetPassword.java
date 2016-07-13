@@ -42,10 +42,10 @@ public class SetPassword extends HttpServlet {
 		
 		if(d.loginUser(username, oldPassword)){
 			if(d.setNewPassword(user.getId(), newPassword))
-				response.sendRedirect("index");
+				response.sendRedirect("pwdsuccess.jsp");
 		}
 		else
-			response.sendRedirect("error.jsp");
+			response.sendRedirect("pwderror.jsp");
 		return;
 	}
 

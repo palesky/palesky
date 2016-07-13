@@ -79,8 +79,7 @@
 								<input class="form-control" placeholder="请输入旧密码" 
 								onblur="checkop()" id="oldPassword" 
 								name="oldPassword" type="password" autofocus="" onpaste="return false" 
-								oncontextmenu="return false" required="required">
-								<input class="form-control" placeholder="请输入旧密码" name="oldPassword" type="password" autofocus="">
+								oncontextmenu="return false" required="required">						
 							</div>
 							<div class="form-group">
 								<input class="form-control" placeholder="请输入新密码" 
