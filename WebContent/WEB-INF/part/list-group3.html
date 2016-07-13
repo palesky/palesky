@@ -13,11 +13,13 @@ pageEncoding="UTF-8"%>
 		<!-- Default panel contents -->
 		<div class="panel-heading">
 			${item.name}
+			<c:if test="${user.privilege<3||(user.privilege==3&&itemType!='产品')}">
 			<button style="margin-left: 6px; margin-top: 5px;"
 				class="pull-right btn btn-primary " data-toggle="modal"
 				data-target="#showUpdateModal">修改</button>
 			<button style="margin-top: 5px;" class="pull-right btn btn-primary "
 				data-toggle="modal" data-target="#delete">删除</button>
+				</c:if>
 		</div>
 		<div class="panel-body">
 			<p>${item.explain}</p>

@@ -15,8 +15,10 @@ pageEncoding="UTF-8"%>
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			${list_group_title}
+			<c:if test="${user.privilege<3||(user.privilege==3&&itemType!='产品')}">
 			<button class="pull-right btn btn-primary btn-lg" data-toggle="modal"
 				data-target="#showAddModal">新建${itemType}</button>
+			</c:if>
 		</div>
 		<ul class="list-group">
 
@@ -237,8 +239,7 @@ pageEncoding="UTF-8"%>
 								<div class="col-sm-6">
 									<label for="exampleInputEmail1">审核者</label> <select
 										name="confirmedBy">
-										<c:forEach var="confirmedMan"
-											items="${sessionScope.tester}">
+										<c:forEach var="confirmedMan" items="${sessionScope.tester}">
 											<option value="${confirmedMan.id}">${confirmedMan.role}${confirmedMan.realname}</option>
 										</c:forEach>
 									</select>

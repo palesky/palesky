@@ -217,7 +217,7 @@
 									</form>
 									<form action="assignbug" method="post">
 										<c:if test="${user.role=='开发人员'||user.role=='管理员'}">
-											<c:if test="${item.status=='待指派'}">
+											<c:if test="${item.status=='进行中'}">
 												<div class="col-sm-4">
 													<div class="form-group input-group">
 														<span class="input-group-addon">提交给</span> <select
