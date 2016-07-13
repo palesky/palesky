@@ -106,8 +106,146 @@ public class UserDao extends BaseDao {
 		}
 		
 	}
-
+    //-=============================================================================================
+	//随机生成账号
+	//=======================================
+	public boolean addProdManager(){
+		String sql="Insert into user(id,account,password,role,visit,privilege)values(?,?,?,?,?,?)";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			char[] idd=new char[6];
+			char[] acc=new char[4];
+			String a="prodmnger";
+			idd=generateRandomArray(6);//随机生成id
+			acc=generateRandomArray(4);
+			String isd=idd.toString();
+			String acco=acc.toString();
+			String account=a+acco;//随机生成account
+			String password="123456";
+			String role="产品经理";
+			pstmt.setString(1, isd);
+			pstmt.setString(2, account);
+			pstmt.setString(3, password);		
+			pstmt.setString(4, role);			
+			pstmt.setInt(5,0);
+			pstmt.setInt(6, 2);
+			pstmt.executeUpdate();
+			return true;			
+		}catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
+	public boolean addProjManager(){
+		String sql="Insert into user(id,account,password,role,visit,privilege)values(?,?,?,?,?,?)";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			char[] idd=new char[6];
+			char[] acc=new char[4];
+			String a="prodmnger";
+			idd=generateRandomArray(6);//随机生成id
+			acc=generateRandomArray(4);
+			String isd=idd.toString();
+			String acco=acc.toString();
+			String account=a+acco;//随机生成account
+			String password="123456";
+			String role="项目经理";
+			pstmt.setString(1, isd);
+			pstmt.setString(2, account);
+			pstmt.setString(3, password);		
+			pstmt.setString(4, role);			
+			pstmt.setInt(5,0);
+			pstmt.setInt(6,3);
+			pstmt.executeUpdate();
+			return true;			
+		}catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
+	public boolean addTestManager(){
+		String sql="Insert into user(id,account,password,role,visit,privilege)values(?,?,?,?,?,?)";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			char[] idd=new char[6];
+			char[] acc=new char[4];
+			String a="prodmnger";
+			idd=generateRandomArray(6);//随机生成id
+			acc=generateRandomArray(4);
+			String isd=idd.toString();
+			String acco=acc.toString();
+			String account=a+acco;//随机生成account
+			String password="123456";
+			String role="测试经理";
+			pstmt.setString(1, isd);
+			pstmt.setString(2, account);
+			pstmt.setString(3, password);		
+			pstmt.setString(4, role);			
+			pstmt.setInt(5,0);
+			pstmt.setInt(6,4);
+			pstmt.executeUpdate();
+			return true;			
+		}catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
+	public boolean addTester(){
+		String sql="Insert into user(id,account,password,role,visit,privilege)values(?,?,?,?,?,?)";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			char[] idd=new char[6];
+			char[] acc=new char[4];
+			String a="prodmnger";
+			idd=generateRandomArray(6);//随机生成id
+			acc=generateRandomArray(4);
+			String isd=idd.toString();
+			String acco=acc.toString();
+			String account=a+acco;//随机生成account
+			String password="123456";
+			String role="测试人员";
+			pstmt.setString(1, isd);
+			pstmt.setString(2, account);
+			pstmt.setString(3, password);		
+			pstmt.setString(4, role);			
+			pstmt.setInt(5,0);
+			pstmt.setInt(6,5);
+			pstmt.executeUpdate();
+			return true;			
+		}catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
+	public boolean addDeveloper(){
+		String sql="Insert into user(id,account,password,role,visit,privilege)values(?,?,?,?,?,?)";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			char[] idd=new char[6];
+			char[] acc=new char[4];
+			String a="prodmnger";
+			idd=generateRandomArray(6);//随机生成id
+			acc=generateRandomArray(4);
+			String isd=idd.toString();
+			String acco=acc.toString();
+			String account=a+acco;//随机生成account
+			String password="123456";
+			String role="开发人员";
+			pstmt.setString(1, isd);
+			pstmt.setString(2, account);
+			pstmt.setString(3, password);		
+			pstmt.setString(4, role);			
+			pstmt.setInt(5,0);
+			pstmt.setInt(6,6);
+			pstmt.executeUpdate();
+			return true;			
+		}catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
 	
+	//-------------------------------------------------------------------------------------------------
 	public boolean deleteUser(String id) {
 		String sql = "DELETE FROM user where id=?";
 		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -439,4 +577,14 @@ public class UserDao extends BaseDao {
 	public ArrayList<UserBean> findAllConfirmeddMan(){
 		return findAllChargedMan();
 	}
+	
+	public static char[] generateRandomArray(int num) {  
+        String chars = "0123456789";  
+        char[] rands = new char[num];  
+        for (int i = 0; i < num; i++) {  
+            int rand = (int) (Math.random() * 10);  
+            rands[i] = chars.charAt(rand);  
+        }  
+        return rands;  
+    }
 }

@@ -17,6 +17,7 @@
 							<use xlink:href="#stroked-male-user"></use></svg> ${user.account} <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
+					
 						<li><a data-toggle="modal" data-target="#setInfo"><svg
 									class="glyph stroked male-user">
 									<use xlink:href="#stroked-male-user"></use></svg> 个人信息</a></li>
@@ -25,10 +26,11 @@
 									<use xlink:href="#stroked-gear"></use></svg> 更改密码</a></li>
 						<li><a href="logout"><svg class="glyph stroked cancel">
 									<use xlink:href="#stroked-cancel"></use></svg> 注销</a></li>
+						<li><a href=""><svg class ="">
+						            <use xlink:href=""></use></svg>创建新用户</a></li>
 					</ul></li>
 			</ul>
 		</div>
-
 	</div>
 	<!-- /.container-fluid -->
 </nav>

@@ -88,7 +88,7 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("firstLogin.jsp").forward(request, response);
 				return;
 			}else{
-				response.sendRedirect("product");
+				response.sendRedirect("index");
 				return;
 			}
 		
