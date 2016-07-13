@@ -52,14 +52,13 @@ public class Task_testerDao extends BaseDao {
 	//-------------------------------------------------------------------------------
 	public boolean addTask_tester(Task_testerBean product) {
 		
-		String sql = "INSERT INTO task_tester(id,taskId,userId,createdDate,bugNum)VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO task_tester(taskId,userId,createdDate,bugNum)VALUES(?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setInt(1, product.getId());
-			pstmt.setString(2, product.getTaskId());
-			pstmt.setString(3, product.getUserId());
-			pstmt.setDate(4, new java.sql.Date(new java.util.Date().getTime()));
-			pstmt.setInt(5, 0);
+			pstmt.setString(1, product.getTaskId());
+			pstmt.setString(2, product.getUserId());
+			pstmt.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
+			pstmt.setInt(4, 0);
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {

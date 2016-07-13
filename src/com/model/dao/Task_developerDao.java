@@ -43,15 +43,13 @@ public class Task_developerDao extends BaseDao {
 	}
 	
 	//-------------------------------------------------------------------------------
-	public boolean addTask_developer(Task_developerBean product) {
-		
-		String sql = "INSERT INTO task_developer(id,taskId,userId,createdDate)VALUES(?,?,?,?)";
+	public boolean addTask_developer(Task_developerBean product) {		
+		String sql = "INSERT INTO task_developer(taskId,userId,createdDate)VALUES(?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setInt(1, product.getId());
-			pstmt.setString(2, product.getTaskId());
-			pstmt.setString(3, product.getUserId());
-			pstmt.setDate(4, new java.sql.Date(new java.util.Date().getTime()));
+			pstmt.setString(1, product.getTaskId());
+			pstmt.setString(2, product.getUserId());
+			pstmt.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {

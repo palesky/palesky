@@ -297,11 +297,32 @@ public class TaskDao extends BaseDao{
 			pstmt.setString(12, task.getChargeBy());
 			pstmt.setInt(13, task.getBugNum());
 			pstmt.executeUpdate();
-			return true;
+			String sql2="insert into task_tester(taskId,userId,createdDate,bugNum) values(?,?,?,?)";
+		    try(Connection conne = dataSource.getConnection(); 
+				PreparedStatement pstmtt = conne.prepareStatement(sql2)){
+			    pstmtt.setString(1, task.getId());
+			    pstmtt.setString(2,task.getConfirmedBy());
+			    pstmtt.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
+			    pstmtt.setInt(4, 0);
+			    pstmtt.executeUpdate();
+			    String sql3="insert into task_developer(taskId,userId,createdDate) values(?,?,?)";
+			    try(Connection connee = dataSource.getConnection(); 
+					PreparedStatement pstmttt = connee.prepareStatement(sql3)){
+				    pstmttt.setString(1, task.getId());
+				    pstmttt.setString(2,task.getChargeBy());
+				    pstmttt.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
+				    pstmttt.executeUpdate();
+				    return true;
+			   }catch (SQLException se) {
+				se.printStackTrace();
+				return false;}
+		   }catch (SQLException se) {
+			se.printStackTrace();
+			return false;}
 		} catch (SQLException se) {
 			se.printStackTrace();
 			return false;
-		}
+		}		
 	}
 	
 	//-----------------------------------------------------------------
