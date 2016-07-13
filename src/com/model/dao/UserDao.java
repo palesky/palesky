@@ -158,6 +158,21 @@ public class UserDao extends BaseDao {
 		}
 	}
 	
+	
+	//---------------------------  更改 职位
+	public boolean updateRole(String id,String role){
+		String sql ="update user set role=? where id =? ";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, role);
+			pstmt.setString(2, id);
+			pstmt.executeUpdate();
+			return true;
+		}catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
 	//-------------------------------------------------------------------------
 	public boolean updateUser(UserBean user) {
 		String sql = "update user set account=?,realname=?,gender=?,email=?,phone=? where id=?";

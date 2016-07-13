@@ -45,7 +45,7 @@
 				<h4 class="modal-title" id="myModalLabel">个人信息</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" action="updateUser" method="post">
+				<form class="form-horizontal" action="updateUser" method="post"">
 					<div class="form-group">
 						<label class="col-sm-2 control-label">员工编号</label>
 						<div class="col-sm-10">
@@ -56,14 +56,16 @@
 						<label class="col-sm-2 control-label">账户名</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" placeholder="请输入账户名"
-								name="account" value="${user.account}">
+								name="account" required="required" value="${user.account}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">真实姓名</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" placeholder="请输入真实姓名"
-								name="realname" value="${user.realname}">
+							<input type="text" id= "realname" class="form-control" placeholder="请输入真实姓名"
+								name="realname"  required="required" 
+								
+								value="${user.realname}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -96,14 +98,15 @@
 						<label for="inputEmail3" class="col-sm-2 control-label">Email地址</label>
 						<div class="col-sm-10">
 							<input type="email" class="form-control" id="inputEmail"
-								placeholder="Email" name="email" value=${user.email}>
+								placeholder="Email" required="required" name="email" value=${user.email}>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">联系方式</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="inputEmail"
-								placeholder="电话或手机" name="phone" value=${user.phone}>
+								placeholder="电话或手机" name="phone" required="required" required pattern="^[0-9]+$" 
+								value=${user.phone}>
 						</div>
 					</div>
 					<div class="form-group">
@@ -120,7 +123,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">保存</button>
+							<button type="submit" class="btn btn-default" >保存</button>
 						</div>
 					</div>
 				</form>
