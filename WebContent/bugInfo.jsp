@@ -65,32 +65,28 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h1 class="panel-title">提交bug</h1>
+						<h1 class="panel-title">查看bug详细信息</h1>
 					</div>
 					<div class="panel-body">
 						<form action="addbug">
 							<div class="modal-body">
 								<div class="form-group">
-									<label for="exampleInputEmail1">bug编号</label> <input
-										type="text" class="form-control" name="id" placeholder="输入编号"
-										>
+									<label for="exampleInputEmail1">bug编号</label> 
+									<p class="form-control-static">${item.id}</p>
 								</div>
 
 								<div class="form-group">
-									<label for="exampleInputEmail1">bug标题</label> <input
-										type="text" class="form-control" name="name"
-										placeholder="输入名称" >
+									<label for="exampleInputEmail1">bug标题</label> 
+									<p class="form-control-static">${item.name}</p>
 								</div>
 								<div class="form-group">
 									<div class="row">
 
 										<div class="col-sm-6">
 											<div class="form-group input-group">
-												<span class="input-group-addon">所使用用例</span> <select
-													name="usecaseId" class="form-control">
-													<c:forEach var="item" items="${requestScope.usecaseList}">
-														<option value="item.id">${item.id}</option>
-													</c:forEach>
+												<span class="input-group-addon">所使用用例</span> 
+												<select class="form-control">
+												<option selected="selected">${item.usecaseId}</option>
 												</select>
 											</div>
 										</div>
@@ -110,13 +106,13 @@
 
 								<div class="form-group">
 									<label for="exampleInputEmail1">${itemType}重现步骤</label>
-									<textarea class="form-control" rows="7" name="steps"
+									<textarea class="form-control" rows="7" name="steps" value="${item.steps}"
 										></textarea>
 								</div>
 
 								<!-- 由项目经理指派 -->
 								<input type="hidden" name="status" value="待指派"> <input
-									type="hidden" name="foundBy" value="${user.id}" >
+									type="hidden" name="foundBy" value="${item.foundBy}">
 
 
 								<div class="form-group">
@@ -127,16 +123,7 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">bug类型</span> <select
 													name="bug_type" class="form-control">
-													<option value="代码错误">代码错误</option>
-													<option value="界面优化">界面优化</option>
-													<option value="设计缺陷">设计缺陷</option>
-													<option value="配置相关">配置相关</option>
-													<option value="安装部署">安装部署</option>
-													<option value="安全相关">安全相关</option>
-													<option value="性能问题">性能问题</option>
-													<option value="标准规范">标准规范</option>
-													<option value="测试脚本">测试脚本</option>
-													<option value="其他">其他</option>
+													<option selected="selected">${item.bug_type}</option>
 												</select>
 											</div>
 										</div>
@@ -145,25 +132,7 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">操作系统</span> <select
 													name="os" class="form-control">
-													<option value="Windows">Windows</option>
-													<option value="Windows 8">Windows 8</option>
-													<option value="Windows 7">Windows 7</option>
-													<option value="Windows Vista">Windows Vista</option>
-													<option value="Windows XP">Windows XP</option>
-													<option value="Windows 2012">Windows 2012</option>
-													<option value="Windows 2008">Windows 2008</option>
-													<option value="Windows 2003">Windows 2003</option>
-													<option value="Windows 2000">Windows 2000</option>
-													<option value="Android">Android</option>
-													<option value="IOS">IOS</option>
-													<option value="WP8">WP8</option>
-													<option value="WP7">WP7</option>
-													<option value="Symbian">Symbian</option>
-													<option value="Linux">Linux</option>
-													<option value="FreeBSD">FreeBSD</option>
-													<option value="OS">OS X</option>
-													<option value="Unix">Unix</option>
-													<option value="其他">其他</option>
+													<option selected="selected">${item.os}</option>
 												</select>
 											</div>
 										</div>
@@ -172,27 +141,7 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">浏览器</span> <select
 													name="browser" class="form-control">
-													<option value="all">全部</option>
-													<option value="ie">IE系列</option>
-													<option value="ie11">IE11</option>
-													<option value="ie10">IE10</option>
-													<option value="ie9">IE9</option>
-													<option value="ie8">IE8</option>
-													<option value="ie7">IE7</option>
-													<option value="ie6">IE6</option>
-													<option value="chrome">chrome</option>
-													<option value="firefox">firefox系列</option>
-													<option value="firefox4">firefox4</option>
-													<option value="firefox3">firefox3</option>
-													<option value="firefox2">firefox2</option>
-													<option value="opera">opera系列</option>
-													<option value="oprea11">opera11</option>
-													<option value="oprea10">opera10</option>
-													<option value="opera9">opera9</option>
-													<option value="safari">safari</option>
-													<option value="maxthon">傲游</option>
-													<option value="uc">UC</option>
-													<option value="other">其他</option>
+													<option selected="selected">${item.browser}</option>
 												</select>
 											</div>
 										</div>
@@ -208,9 +157,7 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">所属任务</span> <select
 													name="task" class="form-control">
-													<c:forEach var="item" items="${requestScope.taskList}">
-														<option value="item.id">${item.name}</option>
-													</c:forEach>
+														<option selected="selected">${item.task_testerId}</option>
 												</select>
 											</div>
 										</div>
@@ -223,10 +170,7 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">优先级</span> <select
 													name="priority" class="form-control">
-													<option value="最高" selected="selected">普通</option>
-													<option value="最高">最低</option>
-													<option value="最高">紧急</option>
-													<option value="最高">最高</option>
+													<option selected="selected">${item.priority}</option>
 												</select>
 											</div>
 										</div>
@@ -235,12 +179,7 @@
 												<div class="form-group input-group">
 													<span class="input-group-addon">提交给</span> <select
 														name="chargeBy" class="form-control">
-														<c:forEach var="chargedMan"
-															items="${sessionScope.chargedByList}">
-															<c:if test="${chargedMan.role=='测试经理'}">
-																<option value="${chargedMan.id}">${chargedMan.role}${chargedMan.realname}</option>
-															</c:if>
-														</c:forEach>
+														<option selected="selected">${item.chargedBy}</option>
 													</select>
 												</div>
 											</div>
@@ -250,10 +189,7 @@
 												<div class="form-group input-group">
 													<span class="input-group-addon">分配给</span> <select
 														name="chargeBy" class="form-control">
-														<c:forEach var="chargedMan"
-															items="${sessionScope.developerList}">
-															<option value="${chargedMan.id}">${chargedMan.role}${chargedMan.realname}</option>
-														</c:forEach>
+														<option selected="selected">${item.chargedBy}</option>
 													</select>
 												</div>
 											</div>
@@ -266,7 +202,7 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">返回</button>
-								<button type="submit" class="btn btn-primary">保存</button>
+								<a class="btn btn-primary">已解决bug</a>
 							</div>
 						</form>
 					</div>
