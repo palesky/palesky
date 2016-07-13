@@ -71,15 +71,15 @@
 						<form action="addbug">
 							<div class="modal-body">
 								<div class="form-group">
-									<label for="exampleInputEmail1">bug编号</label> <input
-										type="text" class="form-control" name="id" placeholder="输入编号"
-										>
+									<label for="exampleInputEmail1">bug编号</label> 
+									<p class="form-control-static">${item.id}</p>
+									<input type="hidden" name="id" value="${item.id}">
 								</div>
 
 								<div class="form-group">
 									<label for="exampleInputEmail1">bug标题</label> <input
 										type="text" class="form-control" name="name"
-										placeholder="输入名称" >
+										placeholder="输入名称" value="${item.name}">
 								</div>
 								<div class="form-group">
 									<div class="row">
@@ -88,8 +88,10 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">所使用用例</span> <select
 													name="usecaseId" class="form-control">
-													<c:forEach var="item" items="${requestScope.usecaseList}">
-														<option value="item.id">${item.id}</option>
+													<c:forEach var="ob" items="${requestScope.usecaseList}">
+														<c:if test="${item.usecaseId==ob.id}">
+														<option value="ob.id">${item.id}</option>
+														</c:if>
 													</c:forEach>
 												</select>
 											</div>
@@ -110,13 +112,14 @@
 
 								<div class="form-group">
 									<label for="exampleInputEmail1">${itemType}重现步骤</label>
-									<textarea class="form-control" rows="7" name="steps"
+									<textarea class="form-control" rows="7" name="steps" value="${item.steps}"
 										></textarea>
 								</div>
 
 								<!-- 由项目经理指派 -->
+								
 								<input type="hidden" name="status" value="待指派"> <input
-									type="hidden" name="foundBy" value="${user.id}" >
+									type="hidden" name="foundBy" >
 
 
 								<div class="form-group">
@@ -127,7 +130,7 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">bug类型</span> <select
 													name="bug_type" class="form-control">
-													<option value="代码错误">代码错误</option>
+													<!-- <option value="代码错误">代码错误</option>
 													<option value="界面优化">界面优化</option>
 													<option value="设计缺陷">设计缺陷</option>
 													<option value="配置相关">配置相关</option>
@@ -136,7 +139,8 @@
 													<option value="性能问题">性能问题</option>
 													<option value="标准规范">标准规范</option>
 													<option value="测试脚本">测试脚本</option>
-													<option value="其他">其他</option>
+													<option value="其他">其他</option> -->
+													<option selected="selected" value="${item.bug_type}">${item.bug_type}</option>
 												</select>
 											</div>
 										</div>
@@ -145,7 +149,7 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">操作系统</span> <select
 													name="os" class="form-control">
-													<option value="Windows">Windows</option>
+													<!-- <option value="Windows">Windows</option>
 													<option value="Windows 8">Windows 8</option>
 													<option value="Windows 7">Windows 7</option>
 													<option value="Windows Vista">Windows Vista</option>
@@ -162,8 +166,8 @@
 													<option value="Linux">Linux</option>
 													<option value="FreeBSD">FreeBSD</option>
 													<option value="OS">OS X</option>
-													<option value="Unix">Unix</option>
-													<option value="其他">其他</option>
+													<option value="Unix">Unix</option> -->
+													<option selected="selected" value="${item.os}">${item.os}</option>
 												</select>
 											</div>
 										</div>
@@ -172,7 +176,7 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">浏览器</span> <select
 													name="browser" class="form-control">
-													<option value="all">全部</option>
+													<!-- <option value="all">全部</option>
 													<option value="ie">IE系列</option>
 													<option value="ie11">IE11</option>
 													<option value="ie10">IE10</option>
@@ -191,8 +195,8 @@
 													<option value="opera9">opera9</option>
 													<option value="safari">safari</option>
 													<option value="maxthon">傲游</option>
-													<option value="uc">UC</option>
-													<option value="other">其他</option>
+													<option value="uc">UC</option> -->
+													<option selected="selected" value="${item.browser}">${item.browser}</option>
 												</select>
 											</div>
 										</div>
@@ -208,9 +212,7 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">所属任务</span> <select
 													name="task" class="form-control">
-													<c:forEach var="item" items="${requestScope.taskList}">
-														<option value="item.id">${item.name}</option>
-													</c:forEach>
+														<option value="${item.task_testerId}">${item.task_testerId}</option>
 												</select>
 											</div>
 										</div>
@@ -223,10 +225,7 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon">优先级</span> <select
 													name="priority" class="form-control">
-													<option value="最高" selected="selected">普通</option>
-													<option value="最高">最低</option>
-													<option value="最高">紧急</option>
-													<option value="最高">最高</option>
+													<option value="${item.priority}" selected="selected">${item.priority}</option>
 												</select>
 											</div>
 										</div>
@@ -238,8 +237,9 @@
 														<c:forEach var="chargedMan"
 															items="${sessionScope.chargedByList}">
 															<c:if test="${chargedMan.role=='测试经理'}">
+															<c:if test="${item.chargeBy==chargedMan.id}">
 																<option value="${chargedMan.id}">${chargedMan.role}${chargedMan.realname}</option>
-															</c:if>
+															</c:if></c:if>
 														</c:forEach>
 													</select>
 												</div>
@@ -252,8 +252,9 @@
 														name="chargeBy" class="form-control">
 														<c:forEach var="chargedMan"
 															items="${sessionScope.developerList}">
+															<c:if test="${item.chargeBy==chargedMan.id}">
 															<option value="${chargedMan.id}">${chargedMan.role}${chargedMan.realname}</option>
-														</c:forEach>
+														</c:if></c:forEach>
 													</select>
 												</div>
 											</div>

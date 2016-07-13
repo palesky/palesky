@@ -28,7 +28,7 @@
 					<form role="form" action="setPassword">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="请输入旧密码" name="oldPassword" type="email" autofocus="">
+								<input class="form-control" placeholder="请输入旧密码" name="oldPassword" type="password" autofocus="">
 							</div>
 							<div class="form-group">
 								<input class="form-control" placeholder="请输入新密码" name="newPasswordOne" type="password" value="">
