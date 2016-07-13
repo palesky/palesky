@@ -10,6 +10,7 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="index"><span>Palesky</span>软件测试管理平台</a>
+			<a class="navbar-brand" href="./introduce/introduce.html"><span>introduce</span></a>
 			<ul class="user-menu">
 				<li class="dropdown pull-right"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"><svg
