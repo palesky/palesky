@@ -360,6 +360,77 @@ public class UserDao extends BaseDao {
 	}
 	
 	/**
+	 * author xjy
+	 * @param role
+	 * @return
+	 */
+	public ArrayList<UserBean> findAllDeveloper(){
+		ArrayList<UserBean> list =new ArrayList<UserBean>();
+		String sql="SELECT * from user where role='开发人员'";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			try (ResultSet rst = pstmt.executeQuery()) {
+				while (rst.next()) {
+					UserBean UserBean = new UserBean();
+					UserBean.setId(rst.getString("id"));
+					UserBean.setAccount(rst.getString("account"));
+					UserBean.setPassword(rst.getString("password"));
+					UserBean.setRealname(rst.getString("realname"));
+					UserBean.setGender(rst.getString("gender"));
+					UserBean.setRole(rst.getString("role"));
+					UserBean.setEmail(rst.getString("email"));
+					UserBean.setPhone(rst.getString("phone"));
+					UserBean.setIp(rst.getString("lastIp"));
+					UserBean.setLastLogin(rst.getString("lastLogin"));
+					UserBean.setVisits(rst.getInt("visit"));
+					UserBean.setPrivilege(rst.getString("privilege"));
+					UserBean.setBelongTo(rst.getString("belongTo"));
+					list.add(UserBean);//7/10新增
+				}
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+			return null;
+		}
+		return list;
+	}
+	
+	/**
+	 * author xjy
+	 * @param role
+	 * @return
+	 */
+	public ArrayList<UserBean> findAllTester(){
+		ArrayList<UserBean> list =new ArrayList<UserBean>();
+		String sql="SELECT * from user where role='测试人员'";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			try (ResultSet rst = pstmt.executeQuery()) {
+				while (rst.next()) {
+					UserBean UserBean = new UserBean();
+					UserBean.setId(rst.getString("id"));
+					UserBean.setAccount(rst.getString("account"));
+					UserBean.setPassword(rst.getString("password"));
+					UserBean.setRealname(rst.getString("realname"));
+					UserBean.setGender(rst.getString("gender"));
+					UserBean.setRole(rst.getString("role"));
+					UserBean.setEmail(rst.getString("email"));
+					UserBean.setPhone(rst.getString("phone"));
+					UserBean.setIp(rst.getString("lastIp"));
+					UserBean.setLastLogin(rst.getString("lastLogin"));
+					UserBean.setVisits(rst.getInt("visit"));
+					UserBean.setPrivilege(rst.getString("privilege"));
+					UserBean.setBelongTo(rst.getString("belongTo"));
+					list.add(UserBean);//7/10新增
+				}
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+			return null;
+		}
+		return list;
+	}
+	/**
 	 * 审核只能由产品经理和项目经理
 	 * author xjy
 	 * @return

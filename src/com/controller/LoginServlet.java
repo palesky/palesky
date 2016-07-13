@@ -69,6 +69,8 @@ public class LoginServlet extends HttpServlet {
 
 		request.getSession().setAttribute("chargedByList",d.findAllChargedMan());
 		request.getSession().setAttribute("confirmedByList",d.findAllConfirmeddMan());
+		request.getSession().setAttribute("developerList", d.findAllDeveloper());
+		request.getSession().setAttribute("tester", d.findAllTester());
 		
 		//System.out.println(user.toString());
 		if (user == null||user.getPassword()==null) {
