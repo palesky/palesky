@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,30 +66,34 @@
 						<h1 class="panel-title">查看bug详细信息</h1>
 					</div>
 					<div class="panel-body">
-						<form action="addbug">
-							<div class="modal-body">
-								<div class="form-group">
-									<label for="exampleInputEmail1">bug编号</label> 
-									<p class="form-control-static">${item.id}</p>
-								</div>
+						<!-- 	<form action="addbug"> -->
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">bug编号</label>
+								<p class="form-control-static">${item.id}</p>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">状态</label>
+								<p class="form-control-static">${item.status}</p>
+							</div>
 
-								<div class="form-group">
-									<label for="exampleInputEmail1">bug标题</label> 
-									<p class="form-control-static">${item.name}</p>
-								</div>
-								<div class="form-group">
-									<div class="row">
+							<div class="form-group">
+								<label for="exampleInputEmail1">bug标题</label>
+								<p class="form-control-static">${item.name}</p>
+							</div>
+							<div class="form-group">
+								<div class="row">
 
-										<div class="col-sm-6">
-											<div class="form-group input-group">
-												<span class="input-group-addon">所使用用例</span> 
-												<select class="form-control">
+									<div class="col-sm-6">
+										<div class="form-group input-group">
+											<span class="input-group-addon">所使用用例</span> <select
+												class="form-control">
 												<option selected="selected">${item.usecaseId}</option>
-												</select>
-											</div>
+											</select>
 										</div>
+									</div>
 
-										<%-- <div class="col-sm-6">
+									<%-- <div class="col-sm-6">
 											<div class="form-group input-group">
 												<span class="input-group-addon">所属项目</span> <select
 													name="project_id" class="form-control">
@@ -99,109 +103,151 @@
 												</select>
 											</div>
 										</div> --%>
+								</div>
+							</div>
+
+							<div class="form-group well">
+								<label for="exampleInputEmail1">${itemType}重现步骤</label>
+								<p>${item.steps}</p>
+							</div>
+
+							<!-- 由项目经理指派 -->
+							<input type="hidden" name="status" value="待指派"> <input
+								type="hidden" name="foundBy" value="${item.foundBy}">
+
+
+							<div class="form-group">
+
+								<div class="row">
+
+									<div class="col-sm-4">
+										<div class="form-group input-group">
+											<span class="input-group-addon">bug类型</span> <select
+												name="bug_type" class="form-control">
+												<option selected="selected">${item.bug_type}</option>
+											</select>
+										</div>
 									</div>
-								</div>
 
-								<div class="form-group well">
-									<label for="exampleInputEmail1">${itemType}重现步骤</label>
-									<p>${item.steps}</p>
-								</div>
-
-								<!-- 由项目经理指派 -->
-								<input type="hidden" name="status" value="待指派"> <input
-									type="hidden" name="foundBy" value="${item.foundBy}">
-
-
-								<div class="form-group">
-
-									<div class="row">
-
-										<div class="col-sm-4">
-											<div class="form-group input-group">
-												<span class="input-group-addon">bug类型</span> <select
-													name="bug_type" class="form-control">
-													<option selected="selected">${item.bug_type}</option>
-												</select>
-											</div>
+									<div class="col-sm-4">
+										<div class="form-group input-group">
+											<span class="input-group-addon">操作系统</span> <select name="os"
+												class="form-control">
+												<option selected="selected">${item.os}</option>
+											</select>
 										</div>
+									</div>
 
-										<div class="col-sm-4">
-											<div class="form-group input-group">
-												<span class="input-group-addon">操作系统</span> <select
-													name="os" class="form-control">
-													<option selected="selected">${item.os}</option>
-												</select>
-											</div>
+									<div class="col-sm-4">
+										<div class="form-group input-group">
+											<span class="input-group-addon">浏览器</span> <select
+												name="browser" class="form-control">
+												<option selected="selected">${item.browser}</option>
+											</select>
 										</div>
-
-										<div class="col-sm-4">
-											<div class="form-group input-group">
-												<span class="input-group-addon">浏览器</span> <select
-													name="browser" class="form-control">
-													<option selected="selected">${item.browser}</option>
-												</select>
-											</div>
-										</div>
-
 									</div>
 
 								</div>
-
-
-								<div class="form-group">
-									<div class="row">
-										<div class="col-sm-4">
-											<div class="form-group input-group">
-												<span class="input-group-addon">所属任务</span> <select
-													name="task" class="form-control">
-														<option selected="selected">${item.task_testerId}</option>
-												</select>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<div class="row">
-										<div class="col-sm-4">
-											<div class="form-group input-group">
-												<span class="input-group-addon">优先级</span> <select
-													name="priority" class="form-control">
-													<option selected="selected">${item.priority}</option>
-												</select>
-											</div>
-										</div>
-										<c:if test="${user.role=='测试人员'}">
-											<div class="col-sm-4">
-												<div class="form-group input-group">
-													<span class="input-group-addon">提交给</span> <select
-														name="chargeBy" class="form-control">
-														<option selected="selected">${item.chargedBy}</option>
-													</select>
-												</div>
-											</div>
-										</c:if>
-										<c:if test="${user.role=='测试经理'}">
-											<div class="col-sm-4">
-												<div class="form-group input-group">
-													<span class="input-group-addon">分配给</span> <select
-														name="chargeBy" class="form-control">
-														<option selected="selected">${item.chargedBy}</option>
-													</select>
-												</div>
-											</div>
-										</c:if>
-									</div>
-								</div>
-
 
 							</div>
-							<div class="modal-footer">
-								<a type="button" class="btn btn-default"
-									data-dismiss="modal" href="bug?q=all">返回</a>
-								<a class="btn btn-primary">已解决bug</a>
+
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group input-group">
+											<span class="input-group-addon">所属任务</span> <select
+												name="task" class="form-control">
+												<option selected="selected">${item.task_testerId}</option>
+											</select>
+										</div>
+									</div>
+								</div>
 							</div>
-						</form>
+
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-4">
+										<div class="form-group input-group">
+											<span class="input-group-addon">优先级</span> <select
+												name="priority" class="form-control">
+												<option selected="selected">${item.priority}</option>
+											</select>
+										</div>
+									</div>
+									<form action="assignbug" method="post">
+										<c:if test="${user.role=='测试人员'||user.role=='管理员'}">
+											<c:if test="${item.status=='待指派'}">
+												<div class="col-sm-4">
+													<div class="form-group input-group">
+														<span class="input-group-addon">提交给</span> <select
+															name="chargeBy" class="form-control">
+															<c:forEach var="ob" items="${sessionScope.chargedByList}">
+																<c:if test="${ob.role=='测试经理'}">
+																	<option selected="selected" value="${ob.id}">测试经理${ob.realname}</option>
+																</c:if>
+															</c:forEach>
+														</select> <input type="hidden" name="type" value="指派"> <input
+															type="hidden" name="id" value="${item.id}">
+													</div>
+													<button type="submit" class="btn btn-default">点击此处提交</button>
+												</div>
+											</c:if>
+										</c:if>
+									</form>
+									<form action="assignbug" method="post">
+										<c:if test="${user.role=='测试经理'||user.role=='管理员'}">
+											<c:if test="${item.status=='待分配'}">
+												<div class="col-sm-4">
+													<div class="form-group input-group">
+														<span class="input-group-addon">分配给</span> <select
+															name="chargeBy" class="form-control">
+															<c:forEach var="ob" items="${sessionScope.developerList}">
+																<c:if test="${ob.role=='开发人员'}">
+																	<option selected="selected" value="${ob.id}">开发人员${ob.realname}</option>
+																</c:if>
+															</c:forEach>
+														</select> <input type="hidden" name="type" value="分配"> <input
+															type="hidden" name="id" value="${item.id}">
+													</div>
+													<button type="submit" class="btn btn-default">点击此处分配</button>
+												</div>
+											</c:if>
+										</c:if>
+									</form>
+									<form action="assignbug" method="post">
+										<c:if test="${user.role=='开发人员'||user.role=='管理员'}">
+											<c:if test="${item.status=='待指派'}">
+												<div class="col-sm-4">
+													<div class="form-group input-group">
+														<span class="input-group-addon">提交给</span> <select
+															name="chargeBy" class="form-control">
+															<c:forEach var="ob" items="${sessionScope.tester}">
+																<c:if test="${ob.role=='测试人员'}">
+																	<option selected="selected" value="${ob.id}">测试人员${ob.realname}</option>
+																</c:if>
+															</c:forEach>
+														</select> <input type="hidden" name="type" value="提交"> <input
+															type="hidden" name="id" value="${item.id}">
+													</div>
+													<button type="submit" class="btn btn-default">提交给测试人员审核</button>
+												</div>
+											</c:if>
+										</c:if>
+									</form>
+								</div>
+							</div>
+
+
+						</div>
+						<div class="modal-footer">
+							<c:if test="${user.role=='管理员'||user.role=='测试人员'}">
+								<a type="button" class="btn btn-default" href="bug?q=all">返回</a>
+								<a class="btn btn-danger" href="openclosebug?id=${item.id}&q=close">无法解决bug</a>
+								<a class="btn btn-success" href="openclosebug?id=${item.id}&q=fix">已解决bug</a>
+							</c:if>
+						</div>
+						<!-- </form> -->
 					</div>
 				</div>
 			</div>
