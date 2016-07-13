@@ -154,7 +154,7 @@
 								<td>${ob.foundDate}</td>
 								<td>${ob.foundBy}</td>
 								<td>${ob.chargeBy}</td>
-								<td><a href="$bug?q=${ob.id}">查看</a></td>
+								<td><a href="bug?q=${ob.id}">查看</a></td>
 							</tr>
 						</c:forEach>
 					</table>

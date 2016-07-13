@@ -85,7 +85,7 @@ public class LoginServlet extends HttpServlet {
 			user=use.getUser(account);
 			session.setAttribute("user", user);
 			if(user.getVisits()==1){
-				request.getRequestDispatcher("firstLogin").forward(request, response);
+				request.getRequestDispatcher("firstLogin.jsp").forward(request, response);
 				return;
 			}else{
 				response.sendRedirect("product");

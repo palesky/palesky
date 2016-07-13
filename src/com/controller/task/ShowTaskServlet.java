@@ -84,8 +84,9 @@ public class ShowTaskServlet extends HttpServlet {
 			request.setAttribute("list_group_title", "任务列表");
 			request.setAttribute("list_group_title2", "和我有关的测试");
 			request.setAttribute("list_group_title3", "和我有关的bug");
-			request.setAttribute("itemList", taskDao.findMyChargedTask(user.getId()));
+			request.setAttribute("itemList", taskDao.findAllTask());
 			request.setAttribute("itemList2", usecaseDao.findAllUsecase());
+			request.setAttribute("itemList3", bugDao.searchMyChargeBug(user.getId()));
 			request.setAttribute("itemType", "任务");
 			request.setAttribute("itemType2", "测试");
 			request.setAttribute("itemType3", "bug");
@@ -115,8 +116,8 @@ public class ShowTaskServlet extends HttpServlet {
 			tmpDao.setTask(user.getId(), q);
 			request.setAttribute("list_group_title3", "任务列表");
 			request.setAttribute("item", taskDao.getTask(q));
-			request.setAttribute("usecaseList", usecaseDao.findAllUsecase());
-			request.setAttribute("bugList", bugDao.findAllBug());
+			request.setAttribute("usecaseList", usecaseDao.findUsecaseByTask(q));
+			request.setAttribute("bugList", taskDao.findBugByTask(q));
 			request.setAttribute("itemType", "任务");
 			request.setAttribute("url", "task");
 

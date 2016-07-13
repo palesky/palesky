@@ -104,10 +104,9 @@
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div class="form-group well">
 									<label for="exampleInputEmail1">${itemType}重现步骤</label>
-									<textarea class="form-control" rows="7" name="steps" value="${item.steps}"
-										></textarea>
+									<p>${item.steps}</p>
 								</div>
 
 								<!-- 由项目经理指派 -->
