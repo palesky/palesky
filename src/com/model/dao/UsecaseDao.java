@@ -37,6 +37,30 @@ public class UsecaseDao extends BaseDao{
 		}
 	}
 	
+	//--------------------------------------------------------------------------------------------------------------
+	public ArrayList<UsecaseBean> findUsecaseByTask(String id){
+		ArrayList<UsecaseBean> list= new ArrayList<UsecaseBean>();
+		String sql="select * from usecase where usecaseId in (select usecaseId from task_usecase where taskId=?)";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			ResultSet rst = pstmt.executeQuery();
+			while (rst.next()) {
+				UsecaseBean usecase = new UsecaseBean();
+				usecase.setId(rst.getString("id"));
+				usecase.setUsecaseLibId(rst.getString("usecaseLibId"));
+				usecase.setCreatedBy(rst.getString("createdBy"));
+				usecase.setCreatedDate(rst.getString("createdDate"));
+				usecase.setSteps(rst.getString("steps"));
+				list.add(usecase);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//-----------------------------------------------------------------------------
 	public ArrayList<UsecaseBean> findUsecaseByType(String id){
 		ArrayList<UsecaseBean> list= new ArrayList<UsecaseBean>();
 		String sql="select * from usecase where usecaseLibId =?";
