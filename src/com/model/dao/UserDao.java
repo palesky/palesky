@@ -142,7 +142,7 @@ public class UserDao extends BaseDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
 			char[] idd=new char[6];
 			char[] acc=new char[4];
-			String a="prodmnger";
+			String a="projmnger";
 			idd=generateRandomArray(6);//随机生成id
 			acc=generateRandomArray(4);
 			String isd=idd.toString();
@@ -169,7 +169,7 @@ public class UserDao extends BaseDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
 			char[] idd=new char[6];
 			char[] acc=new char[4];
-			String a="prodmnger";
+			String a="testmnger";
 			idd=generateRandomArray(6);//随机生成id
 			acc=generateRandomArray(4);
 			String isd=idd.toString();
@@ -196,7 +196,7 @@ public class UserDao extends BaseDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
 			char[] idd=new char[6];
 			char[] acc=new char[4];
-			String a="prodmnger";
+			String a="tester";
 			idd=generateRandomArray(6);//随机生成id
 			acc=generateRandomArray(4);
 			String isd=idd.toString();
@@ -223,7 +223,7 @@ public class UserDao extends BaseDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
 			char[] idd=new char[6];
 			char[] acc=new char[4];
-			String a="prodmnger";
+			String a="developer";
 			idd=generateRandomArray(6);//随机生成id
 			acc=generateRandomArray(4);
 			String isd=idd.toString();
