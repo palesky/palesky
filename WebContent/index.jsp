@@ -47,7 +47,6 @@
 						<use xlink:href="#stroked-app-window"></use></svg> 测试</a></li>
 			<li><a href="usecase"><svg class="glyph stroked star">
 						<use xlink:href="#stroked-star"></use></svg> 用例 </a></li>
-
 			<li role="presentation" class="divider"></li>
 			<li><a href="logout"><svg class="glyph stroked male-user">
 						<use xlink:href="#stroked-male-user"></use></svg> 回到登陆页</a></li>
