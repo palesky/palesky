@@ -152,19 +152,21 @@
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-3 control-label">请输入旧密码</label>
 						<div class="col-sm-9">
-							<input type="password" name="oldPassword" class="form-control">
+							<input type="password" required="required" name="oldPassword" class="form-control">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-3 control-label">请输入新密码</label>
 						<div class="col-sm-9">
-							<input type="password" name="newPassword" class="form-control" id="newPasswordOne">
+							<input type="password" class="form-control" oncontextmenu="return false" required="required" 
+							name="newPassword" id="newPasswordOne" onchange="checkPasswords()">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-3 control-label">请再次输入</label>
 						<div class="col-sm-9">
-							<input type="password" class="form-control" id="newPasswordTwo">
+							<input type="password" class="form-control" oncontextmenu="return false" 
+							name="newPasswordTwo" id="newPasswordTwo" required="required"  onchange="checkPasswords()">
 						</div>
 					</div>
 					<div class="form-group">
