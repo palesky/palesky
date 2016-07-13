@@ -35,8 +35,7 @@ public class TaskDao extends BaseDao{
 			ResultSet rst = pstmt.executeQuery();
 			while(rst.next()){
 				Task_testerBean task = new Task_testerBean();
-				task.setId(rst.getString("id"));
-				task.setName(rst.getString("name"));
+				task.setId(rst.getInt("id"));
 				task.setTaskId(rst.getString("taskId"));
 				task.setUserId(rst.getString("userId"));
 				task.setCreatedDate(rst.getString("createdDate"));
@@ -62,8 +61,7 @@ public class TaskDao extends BaseDao{
 			ResultSet rst = pstmt.executeQuery();
 			while(rst.next()){
 				Task_developerBean task = new Task_developerBean();
-				task.setId(rst.getString("id"));
-				task.setName(rst.getString("name"));
+				task.setId(rst.getInt("id"));
 				task.setTaskId(rst.getString("taskId"));
 				task.setUserId(rst.getString("userId"));
 				task.setCreatedDate(rst.getString("createdDate"));
@@ -99,7 +97,7 @@ public class TaskDao extends BaseDao{
 				bug.setPriority(rst.getString("priority"));
 				bug.setSteps(rst.getString("steps"));
 				bug.setUsecaseId(rst.getString("usecaseId"));
-				bug.setTask_testerId(rst.getString("task_testerId"));
+				bug.setTask_testerId(rst.getInt("task_testerId"));
 				bug.setChargeBy(rst.getString("chargeBy"));
 				list.add(bug);
 			}

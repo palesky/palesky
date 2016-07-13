@@ -1,25 +1,18 @@
 package com.model.bean;
 
 public class Task_developerBean{
-	String id;
-	String name;
+	int id;
 	String userId;
 	String taskId;
 	String createdDate;
 	
-	public void setId(String id){
+	public void setId(int id){
 		this.id=id;
 	}
-	public String getId(){
+	public int getId(){
 		return id;
 	}
 	
-	public void setName(String name){
-		this.name=name;
-	}
-	public String getName(){
-		return name;
-	}
 	
 	public void setUserId(String userId){
 		this.userId=userId;

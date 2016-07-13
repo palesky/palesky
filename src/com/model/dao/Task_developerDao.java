@@ -29,8 +29,7 @@ public class Task_developerDao extends BaseDao {
 			ResultSet rst = pstmt.executeQuery();
 			Task_developerBean product = new Task_developerBean();
 			while (rst.next()) {
-				product.setId(rst.getString("id"));
-				product.setName(rst.getString("name"));
+				product.setId(rst.getInt("id"));
 				product.setTaskId(rst.getString("taskId"));
 				product.setUserId(rst.getString("userId"));
 				product.setCreatedDate(rst.getString("createdDate"));
@@ -46,14 +45,13 @@ public class Task_developerDao extends BaseDao {
 	//-------------------------------------------------------------------------------
 	public boolean addTask_developer(Task_developerBean product) {
 		
-		String sql = "INSERT INTO task_developer(id,name,taskId,userId,createdDate)VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO task_developer(id,taskId,userId,createdDate)VALUES(?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, product.getId());
-			pstmt.setString(2, product.getName());
-			pstmt.setString(3, product.getTaskId());
-			pstmt.setString(4, product.getUserId());
-			pstmt.setDate(5, new java.sql.Date(new java.util.Date().getTime()));
+			pstmt.setInt(1, product.getId());
+			pstmt.setString(2, product.getTaskId());
+			pstmt.setString(3, product.getUserId());
+			pstmt.setDate(4, new java.sql.Date(new java.util.Date().getTime()));
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {
@@ -78,13 +76,13 @@ public class Task_developerDao extends BaseDao {
 	
 	//------------------------------------------------------------------
 	public boolean updateTask_developer(Task_developerBean product) {
-		String sql = "update task_developer set id=?,name=?,taskId=?,userId=? where id=?";
+		String sql = "update task_developer set id=?,taskId=?,userId=? where id=?";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(2, product.getName());
-			pstmt.setString(3, product.getTaskId());
-			pstmt.setString(4, product.getUserId());	
-			pstmt.setString(6, product.getId());			
+			pstmt.setInt(1, product.getId());
+			pstmt.setString(2, product.getTaskId());
+			pstmt.setString(3, product.getUserId());	
+			pstmt.setInt(4, product.getId());			
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {

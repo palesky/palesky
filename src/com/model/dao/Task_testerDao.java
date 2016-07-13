@@ -35,8 +35,7 @@ public class Task_testerDao extends BaseDao {
 			ResultSet rst = pstmt.executeQuery();
 			Task_testerBean product = new Task_testerBean();
 			while (rst.next()) {
-				product.setId(rst.getString("id"));
-				product.setName(rst.getString("name"));
+				product.setId(rst.getInt("id"));
 				product.setTaskId(rst.getString("taskId"));
 				product.setUserId(rst.getString("userId"));
 				product.setCreatedDate(rst.getString("createdDate"));
@@ -53,15 +52,14 @@ public class Task_testerDao extends BaseDao {
 	//-------------------------------------------------------------------------------
 	public boolean addTask_tester(Task_testerBean product) {
 		
-		String sql = "INSERT INTO task_tester(id,name,taskId,userId,createdDate,bugNum)VALUES(?,?,?,?,?,?)";
+		String sql = "INSERT INTO task_tester(id,taskId,userId,createdDate,bugNum)VALUES(?,?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, product.getId());
-			pstmt.setString(2, product.getName());
-			pstmt.setString(3, product.getTaskId());
-			pstmt.setString(4, product.getUserId());
-			pstmt.setDate(5, new java.sql.Date(new java.util.Date().getTime()));
-			pstmt.setInt(6, product.getBugNum());
+			pstmt.setInt(1, product.getId());
+			pstmt.setString(2, product.getTaskId());
+			pstmt.setString(3, product.getUserId());
+			pstmt.setDate(4, new java.sql.Date(new java.util.Date().getTime()));
+			pstmt.setInt(5, 0);
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {
@@ -89,11 +87,11 @@ public class Task_testerDao extends BaseDao {
 		String sql = "update task_tester set id=?,name=?,taskId=?,userId=?,bugNum=?  where id=?";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(2, product.getName());
-			pstmt.setString(3, product.getTaskId());
-			pstmt.setString(4, product.getUserId());	
-			pstmt.setInt(5, product.getBugNum());
-			pstmt.setString(6, product.getId());			
+			pstmt.setInt(1, product.getId());
+			pstmt.setString(2, product.getTaskId());
+			pstmt.setString(3, product.getUserId());	
+			pstmt.setInt(4, product.getBugNum());
+			pstmt.setInt(5, product.getId());			
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {

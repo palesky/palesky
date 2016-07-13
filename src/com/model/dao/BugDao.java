@@ -39,7 +39,7 @@ public class BugDao extends BaseDao{
 				bug.setPriority(rst.getString("priority"));
 				bug.setSteps(rst.getString("steps"));
 				bug.setUsecaseId(rst.getString("usecaseId"));
-				bug.setTask_testerId(rst.getString("task_testerId"));
+				bug.setTask_testerId(rst.getInt("task_testerId"));
 				bug.setChargeBy(rst.getString("chargeBy"));
 				list.add(bug);
 			}
@@ -67,7 +67,7 @@ public class BugDao extends BaseDao{
 			pstmt.setString(8, bug.getPriority());
 			pstmt.setString(9, bug.getSteps());
 			pstmt.setString(10, bug.getUsecaseId());
-			pstmt.setString(11, bug.getTask_testerId());
+			pstmt.setInt(11, bug.getTask_testerId());
 			pstmt.setString(12, bug.getChargeBy());
 			pstmt.executeUpdate();
 			
