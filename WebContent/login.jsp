@@ -53,7 +53,7 @@
 				</div>
 				<button type="submit" id="submit" onclick="return check()">登陆</button>
 				<br>
-				<br> <a href="#">忘记密码？</a>
+				<br><!--  <a href="#">忘记密码？</a> -->
 			</form>
 
 
