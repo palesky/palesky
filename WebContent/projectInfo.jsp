@@ -44,8 +44,6 @@
 						<use xlink:href="#stroked-pencil"></use></svg> 任务</a></li>
 			<li><a href="bug"><svg class="glyph stroked table">
 						<use xlink:href="#stroked-table"></use></svg> bug</a></li>
-			<li><a href="test"><svg class="glyph stroked app-window">
-						<use xlink:href="#stroked-app-window"></use></svg> 测试</a></li>
 			<li><a href="usecase"><svg class="glyph stroked star">
 						<use xlink:href="#stroked-star"></use></svg> 用例 </a></li>
 
