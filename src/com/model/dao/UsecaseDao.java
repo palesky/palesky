@@ -134,4 +134,9 @@ public class UsecaseDao extends BaseDao{
 			return false;
 		}
 	}
+
+	public Object finUsecaseByTask() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

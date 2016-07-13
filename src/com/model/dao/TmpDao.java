@@ -45,19 +45,29 @@ public class TmpDao extends BaseDao {
 			pstmt.setString(1, userid);
 			ResultSet rst = pstmt.executeQuery();
 			TmpBean TmpBean = new TmpBean();
-			while (rst.next()) {
+			if(rst.next()) {
 				TmpBean.setUserid(rst.getString("userid"));
 				TmpBean.setProd_id(rst.getString("prod_id"));
 				TmpBean.setProj_id(rst.getString("proj_id"));
 				TmpBean.setDema_id(rst.getString("dema_id"));
 				TmpBean.setTask_id(rst.getString("Task_id"));
 				TmpBean.setBug_id(rst.getString("Bug_id"));
-				TmpBean.setCase_id(rst.getString("case_id"));				
+				TmpBean.setCase_id(rst.getString("case_id"));	
+			}else{
+				//在数据库中加入tmp
+				addTmp(userid);
+				TmpBean.setUserid(userid);
+				TmpBean.setProd_id("all");
+				TmpBean.setProj_id("all");
+				TmpBean.setDema_id("all");
+				TmpBean.setTask_id("all");
+				TmpBean.setBug_id("all");
+				TmpBean.setCase_id("all");	
 			}
 			return TmpBean;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("return null");
 			return null;
 		}
 	}
@@ -106,6 +116,84 @@ public class TmpDao extends BaseDao {
 			pstmt.setString(5, Tmp.getBug_id());
 			pstmt.setString(6, Tmp.getCase_id());
 			pstmt.setString(7, Tmp.getUserid());
+			pstmt.executeUpdate();
+			return true;
+		} catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean setProd(String userid,String prodid){
+		String sql="update Tmp set prod_id=? where userid=?";
+		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, prodid);
+			pstmt.setString(2, userid);
+			pstmt.executeUpdate();
+			return true;
+		} catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean setProj(String userid,String projid){
+		String sql="update Tmp set proj_id=? where userid=?";
+		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, projid);
+			pstmt.setString(2, userid);
+			pstmt.executeUpdate();
+			return true;
+		} catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean setDemd(String userid,String demdid){
+		String sql="update Tmp set dema_id=? where userid=?";
+		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, demdid);
+			pstmt.setString(2, userid);
+			pstmt.executeUpdate();
+			return true;
+		} catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean setTask(String userid,String taskid){
+		String sql="update Tmp set task_id=? where userid=?";
+		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, taskid);
+			pstmt.setString(2, userid);
+			pstmt.executeUpdate();
+			return true;
+		} catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean setBug(String userid,String bugid){
+		String sql="update Tmp set bug_id=? where userid=?";
+		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, bugid);
+			pstmt.setString(2, userid);
+			pstmt.executeUpdate();
+			return true;
+		} catch (SQLException se) {
+			se.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean setCase(String userid,String caseid){
+		String sql="update Tmp set case_id=? where userid=?";
+		try (Connection conn = dataSource.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, caseid);
+			pstmt.setString(2, userid);
 			pstmt.executeUpdate();
 			return true;
 		} catch (SQLException se) {

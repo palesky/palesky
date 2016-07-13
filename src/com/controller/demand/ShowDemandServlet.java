@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.model.bean.TmpBean;
 import com.model.bean.UserBean;
 import com.model.dao.TaskDao;
+import com.model.dao.TmpDao;
 import com.model.dao.DemandDao;
 import com.model.dao.ProjectDao;
 import com.model.dao.DemandDao;
@@ -43,6 +45,18 @@ public class ShowDemandServlet extends HttpServlet {
 				DemandDao demandDao = new DemandDao();
 				TaskDao taskDao = new TaskDao();
 				
+				
+				// 读取记录用户选择的项目
+				TmpDao tmpDao = new TmpDao();
+				TmpBean tmp = tmpDao.getTmp(user.getId());
+				String saveid=tmp.getDema_id();
+				if(saveid==null){
+					saveid="all";
+					tmpDao.setProd(user.getId(), saveid);
+				}
+				
+				
+				
 				//用于关联项目与产品，所以给出项目列表，会在新建或更新时用到
 				ProjectDao projectDao=new ProjectDao();
 				request.setAttribute("projectList",projectDao.findAllProject());
@@ -52,7 +66,23 @@ public class ShowDemandServlet extends HttpServlet {
 					q="";
 				else
 					q=request.getParameter("q");
+				
+				if (q.equals("")&&!saveid.equals("all")&&!saveid.equals("me")) {
+					q=tmp.getDema_id();
+					request.setAttribute("list_group_title3", "需求列表");
+					request.setAttribute("item", demandDao.getDemand(q));
+					request.setAttribute("itemList", demandDao.findTaskByDemand(q));
+					request.setAttribute("itemType", "需求");
+					request.setAttribute("url", "demand");
+					request.setAttribute("sonUrl", "task");
+					
+					request.getRequestDispatcher("demandInfo.jsp").forward(request, response);
+				} else
+
 				if (q.equals("all") || q.equals("")) {
+					if(!saveid.equals("all"))
+						tmpDao.setDemd(user.getId(), "all");
+
 					request.setAttribute("list_group_title", "需求列表");
 					request.setAttribute("list_group_title2", "和我有关的任务");
 					request.setAttribute("itemList", demandDao.findAllDemand());
@@ -75,6 +105,8 @@ public class ShowDemandServlet extends HttpServlet {
 					
 					request.getRequestDispatcher("demand.jsp").forward(request, response);
 				} else {//特定的任务
+					tmpDao.setDemd(user.getId(), q);
+
 					request.setAttribute("list_group_title3", "任务列表");
 					request.setAttribute("item", demandDao.getDemand(q));
 					request.setAttribute("itemList", demandDao.findTaskByDemand(q));

@@ -52,39 +52,39 @@ public class ShowBugServlet extends HttpServlet {
 //			e.printStackTrace();
 //		}
 
-		String role = "";
-		role=user.getRole();
-		if (role.equals("产品经理") || role.equals("项目经理")) {
-			request.setAttribute("list_group_title", "未修复的bug");
-			request.setAttribute("list_group_title2", "已修复的bug");
-			request.setAttribute("itemList",);
-			request.setAttribute("itemList2",);
-			request.setAttribute("itemType", "项目");
-			request.setAttribute("itemType2", "需求");
-			request.setAttribute("sonurl", "bug");
-
-			request.getRequestDispatcher("bug.jsp").forward(request, response);
-		} else if (role.equals("测试人员")) {
-			request.setAttribute("list_group_title", "未修复的bug");
-			request.setAttribute("list_group_title2", "未确认的bug(需要重新测试)");
-			request.setAttribute("itemList",);
-			request.setAttribute("itemList2",);
-			request.setAttribute("itemType", "项目");
-			request.setAttribute("itemType2", "需求");
-			request.setAttribute("sonurl", "bug");
-
-			request.getRequestDispatcher("bug.jsp").forward(request, response);
-		} else if(role.equals("开发人员")){// 特定的需求
-			request.setAttribute("list_group_title", "指派给我的bug");
-			request.setAttribute("list_group_title2", "未确认的bug");
-			request.setAttribute("itemList",);
-			request.setAttribute("itemList2",);
-			request.setAttribute("itemType", "项目");
-			request.setAttribute("itemType2", "需求");
-			request.setAttribute("sonurl", "bug");
-
-			request.getRequestDispatcher("bug.jsp").forward(request, response);
-		}
+//		String role = "";
+//		role=user.getRole();
+//		if (role.equals("产品经理") || role.equals("项目经理")) {
+//			request.setAttribute("list_group_title", "未修复的bug");
+//			request.setAttribute("list_group_title2", "已修复的bug");
+//			request.setAttribute("itemList",);
+//			request.setAttribute("itemList2",);
+//			request.setAttribute("itemType", "项目");
+//			request.setAttribute("itemType2", "需求");
+//			request.setAttribute("sonurl", "bug");
+//
+//			request.getRequestDispatcher("bug.jsp").forward(request, response);
+//		} else if (role.equals("测试人员")) {
+//			request.setAttribute("list_group_title", "未修复的bug");
+//			request.setAttribute("list_group_title2", "未确认的bug(需要重新测试)");
+//			request.setAttribute("itemList",);
+//			request.setAttribute("itemList2",);
+//			request.setAttribute("itemType", "项目");
+//			request.setAttribute("itemType2", "需求");
+//			request.setAttribute("sonurl", "bug");
+//
+//			request.getRequestDispatcher("bug.jsp").forward(request, response);
+//		} else if(role.equals("开发人员")){// 特定的需求
+//			request.setAttribute("list_group_title", "指派给我的bug");
+//			request.setAttribute("list_group_title2", "未确认的bug");
+//			request.setAttribute("itemList",);
+//			request.setAttribute("itemList2",);
+//			request.setAttribute("itemType", "项目");
+//			request.setAttribute("itemType2", "需求");
+//			request.setAttribute("sonurl", "bug");
+//
+//			request.getRequestDispatcher("bug.jsp").forward(request, response);
+//		}
 	}
 
 	/**

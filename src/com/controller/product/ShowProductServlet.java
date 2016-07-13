@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.model.bean.TmpBean;
 import com.model.bean.UserBean;
 import com.model.dao.ProductDao;
 import com.model.dao.ProjectDao;
+import com.model.dao.TmpDao;
 
 /**
  * Servlet implementation class ShowProductServlet
@@ -40,16 +42,42 @@ public class ShowProductServlet extends HttpServlet {
 		// 需要先移除可能存在的值
 		request.removeAttribute("itemList");
 		request.removeAttribute("list_group_title");
-		UserBean user=(UserBean)request.getSession().getAttribute("user");
+		UserBean user = (UserBean) request.getSession().getAttribute("user");
 		ProductDao pd = new ProductDao();
 		ProjectDao pj = new ProjectDao();
 
+		
+		// 读取记录用户选择的项目
+		TmpDao tmpDao = new TmpDao();
+		TmpBean tmp = tmpDao.getTmp(user.getId());
+		String saveid=tmp.getProd_id();
+		if(saveid==null){
+			saveid="all";
+			tmpDao.setProd(user.getId(), saveid);
+		}
+		
+		
 		String q = "";
-		if(request.getParameter("q")==null)
-			q="";
+		if (request.getParameter("q") == null)
+			q = "";
 		else
-			q=request.getParameter("q");
+			q = request.getParameter("q");
+		
+		if (q.equals("")&&!saveid.equals("all")&&!saveid.equals("me")) {
+			q=tmp.getProd_id();
+			request.setAttribute("list_group_title3", "需求列表");
+			request.setAttribute("item", pd.getProduct(q));
+			request.setAttribute("itemList", pd.findProjectByProduct(q));
+			request.setAttribute("itemType", "产品");
+			request.setAttribute("url", "product");
+			request.setAttribute("sonUrl", "project");
+			
+			request.getRequestDispatcher("productInfo.jsp").forward(request, response);
+		} else
 		if (q.equals("all") || q.equals("")) {
+			if(!saveid.equals("all"))
+				tmpDao.setProd(user.getId(), "all");
+			
 			request.setAttribute("list_group_title", "产品列表");
 			request.setAttribute("list_group_title2", "和我有关的项目");
 			try {
@@ -63,7 +91,7 @@ public class ShowProductServlet extends HttpServlet {
 			request.setAttribute("itemType2", "项目");
 			request.setAttribute("url", "product");
 			request.setAttribute("url2", "project");
-			
+
 			request.getRequestDispatcher("product.jsp").forward(request, response);
 		} else if (q.equals("me")) {
 			request.setAttribute("list_group_title", "和我有关的产品");
@@ -74,20 +102,20 @@ public class ShowProductServlet extends HttpServlet {
 			request.setAttribute("itemType2", "项目");
 			request.setAttribute("url", "product");
 			request.setAttribute("url2", "project");
-			
+
 			request.getRequestDispatcher("product.jsp").forward(request, response);
-		} else {//特定的产品
+		} else {// 特定的产品
+			tmpDao.setProd(user.getId(), q);
 			request.setAttribute("list_group_title3", "产品列表");
 			request.setAttribute("item", pd.getProduct(q));
 			request.setAttribute("itemList", pd.findProjectByProduct(q));
 			request.setAttribute("itemType", "产品");
 			request.setAttribute("url", "product");
 			request.setAttribute("sonUrl", "project");
-			
+
 			request.getRequestDispatcher("productInfo.jsp").forward(request, response);
 		}
 
-		
 	}
 
 	/**
