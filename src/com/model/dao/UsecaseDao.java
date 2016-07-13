@@ -84,9 +84,6 @@ public class UsecaseDao extends BaseDao{
 	}
 	
 	public boolean addUsecase(UsecaseBean usecase) {
-		Date d=new Date();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-dd");
-		String dateNowStr =sdf.format(d);
 		
 		String sql = "INSERT INTO usecase(id,usecaseLibId,createdBy,createdDate,steps)VALUES(?,?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
@@ -94,7 +91,7 @@ public class UsecaseDao extends BaseDao{
 			pstmt.setString(1, usecase.getId());
 			pstmt.setString(2, usecase.getUsecaseLibId());
 			pstmt.setString(3, usecase.getCreatedBy());
-			pstmt.setString(4, dateNowStr);
+			pstmt.setDate(4, new java.sql.Date(new java.util.Date().getTime()));
 			pstmt.setString(5, usecase.getSteps());
 			pstmt.executeUpdate();
 			

@@ -160,7 +160,69 @@ public class BugDao extends BaseDao{
 		}
 		
 	}
+	public ArrayList<BugBean> searchBugByRole(String role,String id){
+		ArrayList<BugBean> list = new ArrayList<BugBean>();
+		if(role=="产品经理"){
+			String sql="select * from bug where task_testerId in (select id from task where demand_id in(select id from demand where project_id in (SELECT id from project where prod_id= ?)))";
+			try(Connection conn=dataSource.getConnection();
+					PreparedStatement pstmt =conn.prepareStatement(sql)){
+				pstmt.setString(1, id);
+				ResultSet rst = pstmt.executeQuery();
+				while (rst.next()) {
+					BugBean bug = new BugBean();
+					bug.setId(rst.getString("id"));
+					bug.setName(rst.getString("name"));
+					bug.setStatus(rst.getString("status"));
+					bug.setBug_type(rst.getString("bug_type"));
+					bug.setOs(rst.getString("os"));
+					bug.setBrowser(rst.getString("browser"));
+					bug.setFoundBy(rst.getString("foundBy"));
+					bug.setFoundDate(rst.getString("foundDate"));
+					bug.setPriority(rst.getString("priority"));
+					bug.setSteps(rst.getString("steps"));
+					bug.setUsecaseId(rst.getString("usecaseId"));
+					bug.setTask_testerId(rst.getInt("task_testerId"));
+					bug.setChargeBy(rst.getString("chargeBy"));
+					list.add(bug);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+		else if(role=="项目经理"){
+			String sql="select * from bug where task_testerId in (select id from task where demand_id in(select id from demand where project_id=?))";
+		try(Connection conn=dataSource.getConnection();
+				PreparedStatement pstmt =conn.prepareStatement(sql)){
+			pstmt.setString(1, id);
+			ResultSet rst = pstmt.executeQuery();
+			while (rst.next()) {
+				BugBean bug = new BugBean();
+				bug.setId(rst.getString("id"));
+				bug.setName(rst.getString("name"));
+				bug.setStatus(rst.getString("status"));
+				bug.setBug_type(rst.getString("bug_type"));
+				bug.setOs(rst.getString("os"));
+				bug.setBrowser(rst.getString("browser"));
+				bug.setFoundBy(rst.getString("foundBy"));
+				bug.setFoundDate(rst.getString("foundDate"));
+				bug.setPriority(rst.getString("priority"));
+				bug.setSteps(rst.getString("steps"));
+				bug.setUsecaseId(rst.getString("usecaseId"));
+				bug.setTask_testerId(rst.getInt("task_testerId"));
+				bug.setChargeBy(rst.getString("chargeBy"));
+				list.add(bug);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	return list;
+	}
 	
+	//-----------------------------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 	public ArrayList<BugBean> searchBugByStatus(String status){
 		ArrayList<BugBean> list = new ArrayList<BugBean>();
