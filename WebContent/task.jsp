@@ -68,8 +68,36 @@
 			<%@include file="./WEB-INF/part/list-group.html"%>
 		</div>
 		<div class="row">
-			<%@include file="./WEB-INF/part/list-group2.html"%>
-			<%@include file="./WEB-INF/part/list-group4.html"%>
+			<div class="col-lg-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">${list_group_title2}</div>
+					<ul class="list-group">
+
+						<c:forEach var="item" items="${requestScope.itemList2}">
+							<li class="list-group-item">${item.id}:${item.steps} <a
+								href="./${url2}?q=${item.id}">详情</a>
+							</li>
+						</c:forEach>
+
+
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">${list_group_title3}</div>
+					<ul class="list-group">
+
+						<c:forEach var="item" items="${requestScope.itemList3}">
+							<li class="list-group-item">${item.name} <a
+								href="./${url3}?q=${item.id}">详情</a>
+							</li>
+						</c:forEach>
+
+
+					</ul>
+				</div>
+			</div>
 		</div>
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>

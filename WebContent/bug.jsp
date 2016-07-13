@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,10 +60,19 @@
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 
-		<%@include file="./WEB-INF/part/breadcrumb.html"%>
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><svg class="glyph stroked home">
+							<use xmlns:xlink="http://www.w3.org/1999/xlink"
+								xlink:href="#stroked-home"></use></svg></a></li>
+				<li class="active"><a href="${url}?q=all">全部${itemType}</a></li>
+				<li class="active"><a href="${url}?q=me">与我相关${itemType}</a></li>
+				
+			</ol>
+		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Bug</h1>
+				<h1 class="page-header">Bug <a type="button" class="btn btn-danger " href="addbug">添加bug</a></h1>
 			</div>
 		</div>
 		<div class="row">

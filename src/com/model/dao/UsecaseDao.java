@@ -136,4 +136,24 @@ public class UsecaseDao extends BaseDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public UsecaseBean getUsecase(String id) {
+		UsecaseBean usecase = new UsecaseBean();
+		String sql="select * from usecase where id =?";
+		try (Connection conn = dataSource.getConnection(); 
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			ResultSet rst = pstmt.executeQuery();
+			if (rst.next()) {
+				usecase.setId(rst.getString("id"));
+				usecase.setUsecaseLibId(rst.getString("usecaseLibId"));
+				usecase.setCreatedBy(rst.getString("createdBy"));
+				usecase.setCreatedDate(rst.getString("createdDate"));
+				usecase.setSteps(rst.getString("steps"));
+			}
+			return usecase;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

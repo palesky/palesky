@@ -141,8 +141,8 @@
 							<td>id</td>
 							<td>名称</td>
 							<td>状态</td>
-							<td>创建日期</td>
-							<td>创建者</td>
+							<td>提交日期</td>
+							<td>提交者</td>
 							<td>负责人</td>
 							<td>操作</td>
 						</tr>
@@ -151,8 +151,8 @@
 								<td>${ob.id}</td>
 								<td>${ob.name}</td>
 								<td>${ob.status}</td>
-								<td>${ob.createdDate}</td>
-								<td>${ob.createdBy}</td>
+								<td>${ob.foundDate}</td>
+								<td>${ob.foundBy}</td>
 								<td>${ob.chargeBy}</td>
 								<td><a href="$bug?q=${ob.id}">查看</a></td>
 							</tr>
@@ -182,21 +182,17 @@
 					<table class="table table-hover table-bordered">
 						<tr>
 							<td>id</td>
-							<td>名称</td>
-							<td>状态</td>
 							<td>创建日期</td>
 							<td>创建者</td>
-							<td>负责人</td>
+							<td>步骤</td>
 							<td>操作</td>
 						</tr>
 						<c:forEach var="ob" items="${requestScope.usecaseList}">
 							<tr>
 								<td>${ob.id}</td>
-								<td>${ob.name}</td>
-								<td>${ob.status}</td>
 								<td>${ob.createdDate}</td>
 								<td>${ob.createdBy}</td>
-								<td>${ob.chargeBy}</td>
+								<td>${ob.steps}</td>
 								<td><a href="usecase?q=${ob.id}">查看</a></td>
 							</tr>
 						</c:forEach>

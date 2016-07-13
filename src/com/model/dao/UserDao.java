@@ -324,13 +324,14 @@ public class UserDao extends BaseDao {
 	}
 	
 	/**
+	 * 找到所有审核者
 	 * author xjy
 	 * @param role
 	 * @return
 	 */
 	public ArrayList<UserBean> findAllChargedMan(){
 		ArrayList<UserBean> list =new ArrayList<UserBean>();
-		String sql="SELECT * from user where role='产品经理' or role='项目经理'";
+		String sql="SELECT * from user where role='产品经理' or role='项目经理' or role='测试经理'";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			try (ResultSet rst = pstmt.executeQuery()) {

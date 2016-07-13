@@ -84,7 +84,7 @@ public class ShowTaskServlet extends HttpServlet {
 			request.setAttribute("list_group_title", "任务列表");
 			request.setAttribute("list_group_title2", "和我有关的测试");
 			request.setAttribute("list_group_title3", "和我有关的bug");
-			request.setAttribute("itemList", taskDao.findAllTask());
+			request.setAttribute("itemList", taskDao.findMyChargedTask(user.getId()));
 			request.setAttribute("itemList2", usecaseDao.findAllUsecase());
 			request.setAttribute("itemType", "任务");
 			request.setAttribute("itemType2", "测试");

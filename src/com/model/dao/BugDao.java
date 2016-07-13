@@ -321,5 +321,34 @@ public class BugDao extends BaseDao{
 		}
 		
 	}
+
+	public BugBean getBug(String id) {
+		BugBean bug = new BugBean();
+		String sql="select * from bug where id = ?";
+		try(Connection conn=dataSource.getConnection();
+				PreparedStatement pstmt =conn.prepareStatement(sql)){
+			pstmt.setString(1, id);
+			ResultSet rst = pstmt.executeQuery();
+			if(rst.next()){
+				bug.setId(rst.getString("id"));
+				bug.setName(rst.getString("name"));
+				bug.setStatus(rst.getString("status"));
+				bug.setBug_type(rst.getString("bug_type"));
+				bug.setOs(rst.getString("os"));
+				bug.setBrowser(rst.getString("browser"));
+				bug.setFoundBy(rst.getString("foundBy"));
+				bug.setFoundDate(rst.getString("foundDate"));
+				bug.setPriority(rst.getString("priority"));
+				bug.setSteps(rst.getString("steps"));
+				bug.setUsecaseId(rst.getString("usecaseId"));
+				bug.setTask_testerId(rst.getInt("task_testerId"));
+				bug.setChargeBy(rst.getString("chargeBy"));
+			}
+			return bug;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 			 
 }
