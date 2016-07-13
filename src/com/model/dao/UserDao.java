@@ -109,7 +109,7 @@ public class UserDao extends BaseDao {
     //-=============================================================================================
 	//随机生成账号
 	//=======================================
-	public boolean addProdManager(){
+	public String addProdManager(){
 		String sql="Insert into user(id,account,password,role,visit,privilege)values(?,?,?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -130,13 +130,13 @@ public class UserDao extends BaseDao {
 			pstmt.setInt(5,0);
 			pstmt.setInt(6, 2);
 			pstmt.executeUpdate();
-			return true;			
+			return account;			
 		}catch (SQLException se) {
 			se.printStackTrace();
-			return false;
+			return null;
 		}
 	}
-	public boolean addProjManager(){
+	public String addProjManager(){
 		String sql="Insert into user(id,account,password,role,visit,privilege)values(?,?,?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -157,13 +157,13 @@ public class UserDao extends BaseDao {
 			pstmt.setInt(5,0);
 			pstmt.setInt(6,3);
 			pstmt.executeUpdate();
-			return true;			
+			return account;			
 		}catch (SQLException se) {
 			se.printStackTrace();
-			return false;
+			return null;
 		}
 	}
-	public boolean addTestManager(){
+	public String addTestManager(){
 		String sql="Insert into user(id,account,password,role,visit,privilege)values(?,?,?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -184,13 +184,13 @@ public class UserDao extends BaseDao {
 			pstmt.setInt(5,0);
 			pstmt.setInt(6,4);
 			pstmt.executeUpdate();
-			return true;			
+			return account;			
 		}catch (SQLException se) {
 			se.printStackTrace();
-			return false;
+			return null;
 		}
 	}
-	public boolean addTester(){
+	public String addTester(){
 		String sql="Insert into user(id,account,password,role,visit,privilege)values(?,?,?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -211,13 +211,13 @@ public class UserDao extends BaseDao {
 			pstmt.setInt(5,0);
 			pstmt.setInt(6,5);
 			pstmt.executeUpdate();
-			return true;			
+			return account;			
 		}catch (SQLException se) {
 			se.printStackTrace();
-			return false;
+			return null;
 		}
 	}
-	public boolean addDeveloper(){
+	public String addDeveloper(){
 		String sql="Insert into user(id,account,password,role,visit,privilege)values(?,?,?,?,?,?)";
 		try (Connection conn = dataSource.getConnection(); 
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -238,10 +238,10 @@ public class UserDao extends BaseDao {
 			pstmt.setInt(5,0);
 			pstmt.setInt(6,6);
 			pstmt.executeUpdate();
-			return true;			
+			return account;			
 		}catch (SQLException se) {
 			se.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 	
