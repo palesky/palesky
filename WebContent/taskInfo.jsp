@@ -74,7 +74,7 @@
 			$itemList->ob 子
 			$item 父
  -->
-			<div class="col-lg-9">
+			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<!-- Default panel contents -->
 					<div class="panel-heading">
@@ -121,7 +121,7 @@
 		
 		<!-- 关联的bug -->
 			<div class="row">
-			<div class="col-lg-5">
+			<div class="col-lg-6">
 				<div class="panel panel-default">
 					<!-- Default panel contents -->
 					<div class="panel-heading">
@@ -161,7 +161,7 @@
 			
 			<!-- 关联的用例 -->
 			<div class="row">
-			<div class="col-lg-5">
+			<div class="col-lg-6">
 				<div class="panel panel-default">
 					<!-- Default panel contents -->
 					<div class="panel-heading">

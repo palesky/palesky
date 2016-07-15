@@ -66,7 +66,7 @@
 			<%@include file="./WEB-INF/part/list-group.html"%>
 		</div>
 		<div class="row">
-			<div class="col-lg-4">
+			<div class="col-lg-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">${list_group_title2}</div>
 					<ul class="list-group">
@@ -81,7 +81,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-6">
 				<div class="panel panel-default">
 					<div class="panel-heading">${list_group_title3}</div>
 					<ul class="list-group">

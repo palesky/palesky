@@ -62,7 +62,7 @@
 
 			<div class="col-xs-12 col-md-6 col-lg-3">
 				<div class="alert bg-success" role="alert">
-					<svg class="glyph stroked checkmark"><use xlink:href="#stroked-checkmark"></use></svg> 添加新用户成功! <a href="index" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+					<svg class="glyph stroked checkmark"><use xlink:href="#stroked-checkmark"></use></svg> 添加新用户成功! 账号为${msg} <a href="index" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
 				</div>
 			</div>
 			

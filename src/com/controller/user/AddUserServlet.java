@@ -34,17 +34,19 @@ public class AddUserServlet extends HttpServlet {
 		if(role==null){
 			request.getRequestDispatcher("status.jsp").forward(request, response);
 		}
+		String msg="";
 		if(role.equals("产品经理")){
-			user.addProdManager();
+			 msg=user.addProdManager();
 		}else if(role.equals("项目经理")){
-			user.addProjManager();
+			 msg=user.addProjManager();
 		}else if(role.equals("测试经理")){
-			user.addTestManager();
+			 msg=user.addTestManager();
 		}else if(role.equals("测试人员")){
-			user.addTester();
+			 msg=user.addTester();
 		}else if(role.equals("开发人员")){
-			user.addDeveloper();
+			 msg=user.addDeveloper();
 		}
+		request.setAttribute("msg", msg);
 		request.getRequestDispatcher("status.jsp").forward(request, response);
 	}
 
